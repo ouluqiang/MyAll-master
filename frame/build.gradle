@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.dependencies.appcompatV7
+    compile rootProject.ext.dependencies.design
+    testCompile rootProject.ext.dependencies.junit
+    compile rootProject.ext.dependencies.okgo
+    compile rootProject.ext.dependencies.gson
+    compile rootProject.ext.dependencies.glide
+    compile rootProject.ext.dependencies.kotlinStdlib
+    compile 'com.github.mzule.activityrouter:activityrouter:1.2.2'
+    annotationProcessor 'com.github.mzule.activityrouter:compiler:1.1.7'
+
+//    compile 'com.android.support:appcompat-v7:23.1.0'
+//    testCompile 'junit:junit:4.12'
+//
+//    //必须使用
+//    compile 'com.lzy.net:okgo:3.0.1'
+////以下三个选择添加，okrx和okrx2不能同时使用
+////    compile 'com.lzy.net:okrx:1.0.1'
+////    compile 'com.lzy.net:okrx2:2.0.1'
+////    compile 'com.lzy.net:okserver:2.0.1'
+//
+//
+//    compile 'com.google.code.gson:gson:2.8.0'
+//    compile 'com.github.bumptech.glide:glide:3.7.0'
+//    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+

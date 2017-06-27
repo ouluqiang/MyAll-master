@@ -1,0 +1,35 @@
+ext {
+    isBuild = false;//false:作为Lib组件存在， true:作为application存在
+
+    android = [
+            compileSdkVersion: 25,
+            buildToolsVersion: "25.0.2",
+            minSdkVersion    : 15,
+            targetSdkVersion : 25,
+            versionCode      : 1,
+            versionName      : "1.0",
+
+    ]
+
+    dependencies = [
+
+            appcompatV7 : 'com.android.support:appcompat-v7:23.1.0',
+            design :'com.android.support:design:25.3.1',
+            junit       : 'junit:junit:4.12',
+
+            //必须使用
+            okgo        : 'com.lzy.net:okgo:3.0.1',
+            //以下三个选择添加，okrx和okrx2不能同时使用
+            //    compile 'com.lzy.net:okrx:1.0.1'
+            //    compile 'com.lzy.net:okrx2:2.0.1'
+            //    compile 'com.lzy.net:okserver:2.0.1'
+
+
+            gson        : 'com.google.code.gson:gson:2.8.0',
+            glide       : 'com.github.bumptech.glide:glide:3.7.0',
+            kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+
+
+    ]
+
+}
