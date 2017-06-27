@@ -29,7 +29,8 @@ ext {
             glide       : 'com.github.bumptech.glide:glide:3.7.0',
             kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
 
-
+            activityrouter :'com.github.mzule.activityrouter:activityrouter:1.2.2',
+            compiler :'com.github.mzule.activityrouter:compiler:1.1.7',
     ]
 
 }

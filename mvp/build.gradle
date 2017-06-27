@@ -38,5 +38,7 @@ dependencies {
     }else{
         compile project(':frame')
     }
+    annotationProcessor rootProject.ext.dependencies.compiler
+
 
 }
