@@ -1,5 +1,5 @@
 ext {
-    isBuild = false;//false:作为Lib组件存在， true:作为application存在
+    isBuild = true;//false:作为Lib组件存在， true:作为application存在
 
     android = [
             compileSdkVersion: 25,
@@ -27,7 +27,7 @@ ext {
 
             gson        : 'com.google.code.gson:gson:2.8.0',
             glide       : 'com.github.bumptech.glide:glide:3.7.0',
-            kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+//            kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
 
             activityrouter :'com.github.mzule.activityrouter:activityrouter:1.2.2',
             compiler :'com.github.mzule.activityrouter:compiler:1.1.7',

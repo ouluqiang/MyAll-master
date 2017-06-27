@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -20,9 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+//    sourceSets {
+//        main.java.srcDirs += 'src/main/kotlin'
+//    }
 }
 
 dependencies {
@@ -36,7 +36,7 @@ dependencies {
     compile rootProject.ext.dependencies.okgo
     compile rootProject.ext.dependencies.gson
     compile rootProject.ext.dependencies.glide
-    compile rootProject.ext.dependencies.kotlinStdlib
+//    compile rootProject.ext.dependencies.kotlinStdlib
     compile rootProject.ext.dependencies.activityrouter
     annotationProcessor rootProject.ext.dependencies.compiler
 

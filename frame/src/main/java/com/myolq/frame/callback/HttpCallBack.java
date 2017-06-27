@@ -1,7 +1,6 @@
 package com.myolq.frame.callback;
 
 import com.lzy.okgo.model.Response;
-import com.myolq.frame.ErrorBean;
 
 import okhttp3.Call;
 
