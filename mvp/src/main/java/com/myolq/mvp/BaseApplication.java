@@ -10,7 +10,7 @@ import com.myolq.frame.loader.OkgoLoader;
  * Created by Administrator on 2017/6/19.
  */
 
-@Modules({"app","user"})
+@Modules({"app","user","home","book"})
 public class BaseApplication extends FrameApplication{
 
     @Override

@@ -22,12 +22,12 @@ import java.util.Map;
  * @author
  *
  */
-public class SpfUtils {
+public class SpUtils {
 
 	private SharedPreferences mShared;
 	private Editor mEditor;
 
-	public SpfUtils(Context context, final String file_name) {
+	public SpUtils(Context context, final String file_name) {
 
 		mShared = context.getSharedPreferences(file_name, Context.MODE_PRIVATE);
 		mEditor = mShared.edit();

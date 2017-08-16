@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Routers.open(MainActivity.this,"myall://login");
+                Routers.open(MainActivity.this,"myall://homeActivity");
             }
         });
 

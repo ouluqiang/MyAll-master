@@ -39,6 +39,8 @@ dependencies {
 //    compile rootProject.ext.dependencies.kotlinStdlib
     compile rootProject.ext.dependencies.activityrouter
     annotationProcessor rootProject.ext.dependencies.compiler
+    compile rootProject.ext.dependencies.greendao
+    compile rootProject.ext.dependencies.eventbus
 
 //    compile 'com.android.support:appcompat-v7:23.1.0'
 //    testCompile 'junit:junit:4.12'
