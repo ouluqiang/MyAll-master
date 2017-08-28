@@ -6,9 +6,9 @@ import android.util.Log;
  * Created by Administrator on 2017/2/28.
  */
 
-public class L {
+public class LogUtils {
 
-    private L()
+    private LogUtils()
     {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");

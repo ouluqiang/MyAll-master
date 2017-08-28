@@ -1,6 +1,7 @@
 package com.myolq.frame;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.github.mzule.activityrouter.annotation.Modules;
 import com.github.mzule.activityrouter.annotation.Router;
@@ -12,9 +13,18 @@ import com.myolq.frame.loader.OkgoLoader;
 
 public class BaseApplication extends Application{
 
+
+
+    private Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext=this.getApplicationContext();
         OkgoLoader.getInstance().init(this);
+    }
+
+    public Context getApplicationContext() {
+        return mContext;
     }
 }
