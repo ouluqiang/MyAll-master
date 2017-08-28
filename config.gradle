@@ -24,7 +24,7 @@ ext {
             //    compile 'com.lzy.net:okrx2:2.0.1'
             //    compile 'com.lzy.net:okserver:2.0.1'
 
-            constraint    : 'com.android.support.constraint:constraint-layout:1.0.2',
+            constraint_layout    : 'com.android.support.constraint:constraint-layout:1.0.2',
             gson          : 'com.google.code.gson:gson:2.8.0',
             glide         : 'com.github.bumptech.glide:glide:3.7.0',
 //            kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
@@ -34,6 +34,8 @@ ext {
             //greenDao
             greendao      : 'org.greenrobot:greendao:3.2.0',
             eventbus      : 'org.greenrobot:eventbus:3.0.0',
+            butterknife   : 'com.jakewharton:butterknife:8.4.0',
+            butterknife_compiler : 'com.jakewharton:butterknife-compiler:8.4.0',
     ]
 
 }

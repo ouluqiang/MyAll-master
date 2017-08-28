@@ -1,15 +1,16 @@
-if(rootProject.ext.isBuild){
+if (rootProject.ext.isBuild) {
     apply plugin: 'com.android.application'
-}else{
+} else {
     apply plugin: 'com.android.library'
 }
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        if(rootProject.ext.isBuild){
+        if (rootProject.ext.isBuild) {
             applicationId "com.myolq.user"
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -27,11 +28,11 @@ android {
         }
     }
 
-    sourceSets{
-        main{
-            if(rootProject.ext.isBuild){
+    sourceSets {
+        main {
+            if (rootProject.ext.isBuild) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            }else{
+            } else {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
                 //release模式下排除debug文件夹中的所有Java文件
                 java {
@@ -53,6 +54,13 @@ dependencies {
 //    compile 'com.android.support:appcompat-v7:25.3.1'
 //    compile 'com.android.support:design:25.3.1'
 //    testCompile 'junit:junit:4.12'
+
     annotationProcessor rootProject.ext.dependencies.compiler
     compile project(':frame')
+
+//    compile rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    compile rootProject.ext.dependencies.constraint_layout
+//    compile 'com.android.support:appcompat-v7:25.3.1'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

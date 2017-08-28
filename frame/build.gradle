@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 //apply plugin: 'kotlin-android'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -37,10 +38,18 @@ dependencies {
     compile rootProject.ext.dependencies.gson
     compile rootProject.ext.dependencies.glide
 //    compile rootProject.ext.dependencies.kotlinStdlib
+
     compile rootProject.ext.dependencies.activityrouter
     annotationProcessor rootProject.ext.dependencies.compiler
     compile rootProject.ext.dependencies.greendao
     compile rootProject.ext.dependencies.eventbus
+
+    compile rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+
+//    compile 'com.jakewharton:butterknife:8.5.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
 
 //    compile 'com.android.support:appcompat-v7:23.1.0'
 //    testCompile 'junit:junit:4.12'

@@ -16,7 +16,7 @@ import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
-import com.myolq.frame.NetConfig;
+import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.callback.BitmapCallBack;
 import com.myolq.frame.callback.DisposeCallBack;
 import com.myolq.frame.callback.FileCallBack;
