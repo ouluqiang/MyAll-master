@@ -5,6 +5,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
+import com.github.mzule.activityrouter.router.Routers;
 import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
@@ -47,7 +48,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
 
     private void init() {
-        LoginPresenter loginPresenter = new LoginPresenter(this);
+        LoginPresenter loginPresenter = new LoginPresenter(this,this);
         tlTitle.setTitle("登录");
         tlTitle.setOnClickLeftBack(this);
 
@@ -86,8 +87,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 //        UserBean userBean=new UserBean(account,password);
             presenter.getLogin(account, password);
         }else if(id==R2.id.btn_register){
-            LoadUtils.getInstance(this).show();
-//            Routers.open(this, RouterConfig.getRegister());
+
+            Routers.open(this, RouterConfig.getRegister());
 
         }
     }

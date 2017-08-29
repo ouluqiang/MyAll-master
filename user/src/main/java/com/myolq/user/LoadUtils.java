@@ -58,7 +58,7 @@ public class LoadUtils {
             if (mPressedTime<=time){
                 handler.postDelayed(runnable,1000);
             }else{
-                remove();
+                cancel();
             }
         }
     };
@@ -68,7 +68,7 @@ public class LoadUtils {
         handler.post(runnable);
     }
 
-    public void remove(){
+    public void cancel(){
         mPressedTime=0;
         dialogUtils.cancel();
         handler.removeCallbacks(runnable);
