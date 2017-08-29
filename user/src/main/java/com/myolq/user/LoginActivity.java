@@ -2,6 +2,7 @@ package com.myolq.user;
 
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
@@ -33,6 +34,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     AutoCompleteTextView actvAccount;
     @BindView(R2.id.et_password)
     EditText etPassword;
+    @BindView(R2.id.btn_register)
+    Button btnRegister;
     private LoginContract.Presenter presenter;
 
     @Override
@@ -48,16 +51,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
 
     private void init() {
-        LoginPresenter loginPresenter = new LoginPresenter(this,this);
+        LoginPresenter loginPresenter = new LoginPresenter(this, this);
         tlTitle.setTitle("登录");
         tlTitle.setOnClickLeftBack(this);
-
+        onClicked();
     }
 
-//    @OnClick({R.id.btn_login,R.id.btn_register})
-//    public void onViewClicked() {
-//
-//    }
+    public void onClicked() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Routers.open(getApplicationContext(), RouterConfig.getRegister());
+            }
+        });
+    }
 
 
     @Override
@@ -71,24 +78,26 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         ToastUtil.show(this, s);
     }
 
-    @OnClick({R2.id.btn_login, R2.id.btn_register})
+    @OnClick({R2.id.btn_login})
     public void onViewClicked(View view) {
-        int id=view.getId();
-        System.out.println(id+"---"+R2.id.btn_register);
-        if (id==R.id.btn_login){
+        int id = view.getId();
+        System.out.println(id + "---" + R2.id.btn_register);
+        if (id == R.id.btn_login) {
             String account = actvAccount.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
             if (CharacterUtils.isEmpty(account)) {
                 onToast("账号不能为空");
+                return;
             }
             if (CharacterUtils.isEmpty(password)) {
                 onToast("密码不能为空");
+                return;
             }
-//        UserBean userBean=new UserBean(account,password);
             presenter.getLogin(account, password);
-        }else if(id==R2.id.btn_register){
-
-            Routers.open(this, RouterConfig.getRegister());
+//        UserBean userBean=new UserBean(account,password);
+//        } else if (id == R2.id.btn_register) {
+//
+//            Routers.open(this, RouterConfig.getRegister());
 
         }
     }

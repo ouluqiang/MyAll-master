@@ -58,9 +58,11 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
         String password=etPassword.getText().toString().trim();
         if (CharacterUtils.isEmpty(account)) {
             onToast("账号不能为空");
+            return;
         }
         if (CharacterUtils.isEmpty(password)) {
             onToast("密码不能为空");
+            return;
         }
         UserBean user=new UserBean(account,password);
         presenter.getRegister(user);
