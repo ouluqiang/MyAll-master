@@ -1,13 +1,9 @@
-package com.myolq.user;
+package com.myolq.frame.utils;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
 
 /**
  * Created by root on 2017-08-28.

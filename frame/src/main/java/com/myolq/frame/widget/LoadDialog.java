@@ -1,20 +1,20 @@
-package com.myolq.user;
+package com.myolq.frame.widget;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
 
+import com.myolq.frame.R;
+import com.myolq.frame.utils.DialogUtils;
 import com.myolq.frame.utils.LogUtils;
 
 /**
  * Created by root on 2017-08-28.
  */
 
-public class LoadUtils {
+public class LoadDialog {
 
 
-    public static LoadUtils loadUtils;
+    public static LoadDialog loadDialog;
     private long mPressedTime;
 
     private long time=10;
@@ -27,7 +27,7 @@ public class LoadUtils {
     private Context context;
     private DialogUtils dialogUtils;
 
-    private LoadUtils(Context context) {
+    private LoadDialog(Context context) {
         this.context=context;
         dialogUtils = DialogUtils.getInstance(context);
         dialogUtils.setView(R.layout.dialog_load);
@@ -37,15 +37,15 @@ public class LoadUtils {
 
     }
 
-    public static LoadUtils getInstance(Context context){
-        if (loadUtils==null){
+    public static LoadDialog getInstance(Context context){
+        if (loadDialog==null){
             synchronized (DialogUtils.class){
-                if (loadUtils==null){
-                    loadUtils=new LoadUtils(context);
+                if (loadDialog==null){
+                    loadDialog=new LoadDialog(context);
                 }
             }
         }
-        return loadUtils;
+        return loadDialog;
     }
 
 

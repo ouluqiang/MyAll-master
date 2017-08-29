@@ -11,6 +11,7 @@ import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.ToastUtil;
+import com.myolq.frame.widget.LoadDialog;
 import com.myolq.frame.widget.TopToolbar;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
@@ -61,6 +62,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                LoadDialog.getInstance(LoginActivity.this).show();
                 Routers.open(getApplicationContext(), RouterConfig.getRegister());
             }
         });
