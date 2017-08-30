@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <com.myolq.frame.widget.TopToolbar
-        android:id="@+id/ttl_title"
+    <com.myolq.frame.widget.TitleBar
+        android:id="@+id/tb_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.myolq.frame.widget.TopToolbar>
+        android:layout_height="wrap_content"></com.myolq.frame.widget.TitleBar>
 
     <!--<android.support.design.widget.TextInputLayout-->
         <!--android:layout_width="match_parent"-->

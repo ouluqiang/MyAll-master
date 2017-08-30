@@ -16,25 +16,32 @@ import com.myolq.frame.R;
 /**
  * Created by root on 2017-08-24.
  */
-public class TopToolbar extends LinearLayout {
+public class TitleBar extends LinearLayout {
 
     private Context mContext;
     private TextView title;
     private ImageView back;
 
-    public TopToolbar(Context context) {
+    public Toolbar getToolbar() {
+        back.setVisibility(GONE);
+        return toolbar;
+    }
+
+    private Toolbar toolbar;
+
+    public TitleBar(Context context) {
         super(context);
         mContext = context;
         initView();
     }
 
-    public TopToolbar(Context context, @Nullable AttributeSet attrs) {
+    public TitleBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         initView();
     }
 
-    public TopToolbar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TitleBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initView();
@@ -42,7 +49,7 @@ public class TopToolbar extends LinearLayout {
 
     private void initView() {
         View mView = inflate(mContext, R.layout.widget_toolbar, this);
-        Toolbar toolbar = (Toolbar) mView.findViewById(R.id.toolbar);
+        toolbar = (Toolbar) mView.findViewById(R.id.toolbar);
         toolbar.setTitle("");
         title = (TextView) mView.findViewById(R.id.title);
         back = (ImageView) mView.findViewById(R.id.back);
@@ -62,6 +69,7 @@ public class TopToolbar extends LinearLayout {
             }
         });
     }
+
 
 
 }

@@ -1,6 +1,6 @@
-if(rootProject.ext.isBuild){
+if (rootProject.ext.isBuild) {
     apply plugin: 'com.android.application'
-}else{
+} else {
     apply plugin: 'com.android.library'
 }
 
@@ -10,7 +10,7 @@ android {
 
 
     defaultConfig {
-        if(rootProject.ext.isBuild){
+        if (rootProject.ext.isBuild) {
             applicationId "com.myolq.home"
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -28,11 +28,11 @@ android {
         }
     }
 
-    sourceSets{
-        main{
-            if(rootProject.ext.isBuild){
+    sourceSets {
+        main {
+            if (rootProject.ext.isBuild) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            }else{
+            } else {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
                 //release模式下排除debug文件夹中的所有Java文件
                 java {
@@ -57,5 +57,7 @@ dependencies {
 //    testCompile 'junit:junit:4.12'
     compile rootProject.ext.dependencies.constraint_layout
     annotationProcessor rootProject.ext.dependencies.compiler
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     compile project(':frame')
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

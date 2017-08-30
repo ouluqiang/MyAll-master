@@ -9,12 +9,17 @@ public class RouterConfig {
     private   static  String URL="myall://";
     public final  static String LOGIN="login";
     public final static String REGISTER="register";
+    public final static String LAUNCH="launch";
+    public final static String HOME="home";
 
     public static String getLogin(){
         return URL+LOGIN;
     }
     public static String getRegister(){
         return URL+REGISTER;
+    }
+    public static String getHome(){
+        return URL+HOME;
     }
 
 }

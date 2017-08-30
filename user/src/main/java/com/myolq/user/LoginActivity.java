@@ -12,7 +12,7 @@ import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.LoadDialog;
-import com.myolq.frame.widget.TopToolbar;
+import com.myolq.frame.widget.TitleBar;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
 
@@ -29,8 +29,8 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
 
 
-    @BindView(R2.id.ttl_title)
-    TopToolbar tlTitle;
+    @BindView(R2.id.tb_title)
+    TitleBar tbTitle;
     @BindView(R2.id.actv_account)
     AutoCompleteTextView actvAccount;
     @BindView(R2.id.et_password)
@@ -53,8 +53,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
     private void init() {
         LoginPresenter loginPresenter = new LoginPresenter(this, this);
-        tlTitle.setTitle("登录");
-        tlTitle.setOnClickLeftBack(this);
+        tbTitle.setTitle("登录");
+        tbTitle.setOnClickLeftBack(this);
         onClicked();
     }
 

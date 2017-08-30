@@ -7,7 +7,7 @@ import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.ToastUtil;
-import com.myolq.frame.widget.TopToolbar;
+import com.myolq.frame.widget.TitleBar;
 import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.RegisterContract;
 import com.myolq.user.presenter.RegisterPresenter;
@@ -18,8 +18,8 @@ import butterknife.OnClick;
 @Router(RouterConfig.REGISTER)
 public class RegisterActivity extends BaseActivity implements RegisterContract.RegisterView {
 
-    @BindView(R2.id.ttl_title)
-    TopToolbar ttlTitle;
+    @BindView(R2.id.tb_title)
+    TitleBar tbTitle;
     @BindView(R2.id.et_acount)
     EditText etAcount;
     @BindView(R2.id.et_password)
@@ -38,8 +38,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
 
     private void init() {
         RegisterPresenter registerPresenter=new RegisterPresenter(this);
-        ttlTitle.setTitle("注册");
-        ttlTitle.setOnClickLeftBack(this);
+        tbTitle.setTitle("注册");
+        tbTitle.setOnClickLeftBack(this);
     }
 
     @Override
