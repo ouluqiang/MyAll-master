@@ -11,10 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mzule.activityrouter.annotation.Router;
+import com.github.mzule.activityrouter.router.Routers;
 import com.myolq.frame.BaseActivity;
+import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
 
@@ -25,13 +28,13 @@ import butterknife.ButterKnife;
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.tb_title)
+    @BindView(R2.id.tb_title)
     TitleBar tbTitle;
-    @BindView(R.id.fl_view)
+    @BindView(R2.id.fl_view)
     FrameLayout flView;
-    @BindView(R.id.nav_view)
+    @BindView(R2.id.nav_view)
     NavigationView navView;
-    @BindView(R.id.drawer_layout)
+    @BindView(R2.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     @Override
@@ -61,25 +64,21 @@ public class HomeActivity extends BaseActivity
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
-//        TextView tvUser=getViewId(navView,R.id.tv_user);
-//        TextView tvUser= (TextView) navView.findViewById(R.id.tv_user);
-//
-////        ImageView ivUser=getViewId(navView,R.id.iv_user);
-//        tvUser.setText("用户名");
-        //        TextView tvUser=getViewId(navView,R.id.tv_user);
-        View view=getLayoutInflater().inflate(R.layout.nav_header_home,null);
-        final TextView tvUser= getViewId(navView.getHeaderView(0),R.id.tv_user);
+        getHeadView();
+    }
 
-
-//        final TextView tvUser= (TextView) view.findViewById(R.id.tv_user);
+    private void getHeadView() {
+         TextView tvUser= getViewId(navView.getHeaderView(0),R.id.tv_user);
+         ImageView ivUser= getViewId(navView.getHeaderView(0),R.id.iv_user);
+         LinearLayout llUser= getViewId(navView.getHeaderView(0),R.id.ll_user);
         tvUser.setText("用户名");
-        tvUser.setOnClickListener(new View.OnClickListener() {
+        llUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvUser.setText("用户名");
-                ToastUtil.show(getApplicationContext(),"dianji ");
+                Routers.open(getApplication(), RouterConfig.getLogin());
             }
         });
+
     }
 
     @Override

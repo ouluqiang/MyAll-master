@@ -13,7 +13,7 @@ import butterknife.BindView;
 @Router(RouterConfig.LAUNCH)
 public class LaunchActivity extends BaseActivity {
 
-    @BindView(R.id.tv_time)
+    @BindView(R2.id.tv_time)
     TextView tvTime;
 
     private int time=3;
