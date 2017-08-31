@@ -1,5 +1,7 @@
 package com.myolq.user.contract;
 
+import android.content.Context;
+
 import com.myolq.frame.BasePresenter;
 import com.myolq.frame.BaseView;
 import com.myolq.frame.callback.GsonCallBack;
@@ -14,11 +16,13 @@ import com.myolq.user.bean.UserBean;
 public class LoginContract {
 
     public interface LoginView extends BaseView<Presenter> {
-        void onToast(String s);
+//        void onToast(String s);
+//        void onLoadShow();
+//        void onLoadCancel();
     }
     public interface Presenter extends BasePresenter{
 
-        void getLogin(String username,String password);
+        void getLogin(String username, String password);
 //        void getUser();
     }
     public interface Model {

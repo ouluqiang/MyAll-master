@@ -1,9 +1,11 @@
 package com.myolq.user.presenter;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.widget.LoadDialog;
 import com.myolq.user.User;
 import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.RegisterContract;
@@ -32,16 +34,20 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void getRegister(UserBean user) {
+        registerView.onLoadShow();
         registerModel.getRegister(user, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
-                Log.i("test",s);
-                registerView.onToast(s);
+//                Log.i("test","onSuccess"+s);
+                registerView.onToast("注册成功");
+                registerView.onFinish();
             }
 
             @Override
             public void onError(Response response, Exception e) {
-
+                registerView.onLoadCancel();
+//                Log.i("test","onError"+response.code()+"--"+response.message());
+//                registerView.onToast(response.code()+(String)response.body());
             }
         });
     }

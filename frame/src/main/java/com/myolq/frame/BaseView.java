@@ -7,4 +7,8 @@ package com.myolq.frame;
 public interface BaseView<T> {
 
     void setPresenter(T t);
+
+    void onToast(String s);
+    void onLoadShow();
+    void onLoadCancel();
 }

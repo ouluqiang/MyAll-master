@@ -286,9 +286,10 @@ public class OkgoLoader {
                     @Override
                     public void onSuccess(Response<String> response) {
                         //上传成功
-//                                 disposeCallBack.onSuccess(callBack,s,call,response);
+                                 disposeCallBack.onSuccess(callBack,response);
                         Log.i("test", response.body());
                     }
+
                 });
     }
 

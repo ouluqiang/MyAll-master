@@ -17,10 +17,8 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     private LoginModel loginModel;
     private LoginContract.LoginView loginView;
-    private Context context;
 
-    public LoginPresenter(Context context,LoginContract.LoginView loginView) {
-        this.context=context;
+    public LoginPresenter( LoginContract.LoginView loginView) {
         loginModel = new LoginModel();
         this.loginView=loginView;
         this.loginView.setPresenter(this);
@@ -33,18 +31,18 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void getLogin(String username, String password) {
-        LoadDialog.getInstance(context).show();
+        loginView.onLoadShow();
         loginModel.getLogin(username, password, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
                 Log.i("test",s);
-                LoadDialog.getInstance(context).cancel();
                 loginView.onToast(s);
+                loginView.onLoadCancel();
             }
 
             @Override
             public void onError(Response response, Exception e) {
-                LoadDialog.getInstance(context).cancel();
+                loginView.onLoadCancel();
             }
         });
     }

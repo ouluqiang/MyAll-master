@@ -24,6 +24,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
     EditText etAcount;
     @BindView(R2.id.et_password)
     EditText etPassword;
+    @BindView(R2.id.et_password_new)
+    EditText etPasswordNew;
     private RegisterContract.Presenter presenter;
 
     @Override
@@ -37,7 +39,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
     }
 
     private void init() {
-        RegisterPresenter registerPresenter=new RegisterPresenter(this);
+        RegisterPresenter registerPresenter = new RegisterPresenter(this);
         tbTitle.setTitle("注册");
         tbTitle.setOnClickLeftBack(this);
     }
@@ -49,13 +51,30 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
 
     @Override
     public void onToast(String s) {
-        ToastUtil.show(this,s);
+        ToastUtil.show(this, s);
     }
 
-    @OnClick(R2.id.btn_regitster)
+    @Override
+    public void onFinish() {
+        onLoadCancel();
+        finish();
+    }
+
+    @Override
+    public void onLoadShow() {
+        LoadShow();
+    }
+
+    @Override
+    public void onLoadCancel() {
+        LoadCancel();
+    }
+
+    @OnClick(R2.id.btn_register)
     public void onViewClicked() {
-        String account=etAcount.getText().toString().trim();
-        String password=etPassword.getText().toString().trim();
+        String account = etAcount.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        String passwordNew = etPasswordNew.getText().toString().trim();
         if (CharacterUtils.isEmpty(account)) {
             onToast("账号不能为空");
             return;
@@ -64,7 +83,15 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
             onToast("密码不能为空");
             return;
         }
-        UserBean user=new UserBean(account,password);
+        if (CharacterUtils.isEmpty(passwordNew)) {
+            onToast("密码不能为空");
+            return;
+        }
+        if (!CharacterUtils.equals(password,passwordNew)){
+            onToast("密码不一致");
+            return;
+        }
+        UserBean user = new UserBean(account, password);
         presenter.getRegister(user);
     }
 }

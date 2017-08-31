@@ -52,20 +52,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
 
     private void init() {
-        LoginPresenter loginPresenter = new LoginPresenter(this, this);
-        tbTitle.setTitle("登录");
+        LoginPresenter loginPresenter = new LoginPresenter(this);
+//        tbTitle.setTitle("登录");
         tbTitle.setOnClickLeftBack(this);
         onClicked();
     }
 
     public void onClicked() {
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                LoadDialog.getInstance(LoginActivity.this).show();
-                Routers.open(getApplicationContext(), RouterConfig.getRegister());
-            }
-        });
+//        btnRegister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                LoadDialog.getInstance(LoginActivity.this).show();
+//                Routers.open(getApplicationContext(), RouterConfig.getRegister());
+//            }
+//        });
     }
 
 
@@ -80,7 +80,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         ToastUtil.show(this, s);
     }
 
-    @OnClick({R2.id.btn_login})
+    @Override
+    public void onLoadShow() {
+        LoadShow();
+    }
+
+    @Override
+    public void onLoadCancel() {
+        LoadCancel();
+    }
+
+    @OnClick({R2.id.btn_login,R2.id.btn_register})
     public void onViewClicked(View view) {
         int id = view.getId();
         System.out.println(id + "---" + R2.id.btn_register);
@@ -97,9 +107,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             }
             presenter.getLogin(account, password);
 //        UserBean userBean=new UserBean(account,password);
-//        } else if (id == R2.id.btn_register) {
+        } else if (id == R.id.btn_register) {
 //
-//            Routers.open(this, RouterConfig.getRegister());
+            Routers.open(this, RouterConfig.getRegister());
 
         }
     }

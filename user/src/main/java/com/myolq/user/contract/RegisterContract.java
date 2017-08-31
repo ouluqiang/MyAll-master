@@ -1,5 +1,7 @@
 package com.myolq.user.contract;
 
+import android.content.Context;
+
 import com.myolq.frame.BasePresenter;
 import com.myolq.frame.BaseView;
 import com.myolq.frame.callback.StringCallBack;
@@ -13,7 +15,10 @@ import com.myolq.user.bean.UserBean;
 public class RegisterContract {
 
     public interface RegisterView extends BaseView<RegisterContract.Presenter> {
-        void onToast(String s);
+//        void onToast(String s);
+        void onFinish();
+//        void onLoadShow();
+//        void onLoadCancel();
     }
     public interface Presenter extends BasePresenter {
 
