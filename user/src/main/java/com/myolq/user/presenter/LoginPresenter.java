@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.widget.LoadDialog;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.model.LoginModel;
@@ -36,8 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter{
             @Override
             public void onSuccess(String s) {
                 Log.i("test",s);
-                loginView.onToast(s);
-                loginView.onLoadCancel();
+                loginView.onLoginSuccess(s);
             }
 
             @Override

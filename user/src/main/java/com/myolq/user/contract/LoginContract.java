@@ -19,6 +19,7 @@ public class LoginContract {
 //        void onToast(String s);
 //        void onLoadShow();
 //        void onLoadCancel();
+        void onLoginSuccess(String s);
     }
     public interface Presenter extends BasePresenter{
 

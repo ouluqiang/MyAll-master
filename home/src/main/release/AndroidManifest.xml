@@ -16,6 +16,7 @@
         </activity>
         <activity android:name=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"
             ></activity>
     </application>
 

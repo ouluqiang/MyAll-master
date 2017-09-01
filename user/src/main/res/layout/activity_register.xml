@@ -11,9 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.myolq.frame.widget.TitleBar>
 
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
 
         <EditText android:id="@+id/et_acount"
             android:layout_width="match_parent"
@@ -30,10 +27,6 @@
             android:background="@drawable/bg_edit_select"
             android:singleLine="true" />
 
-    <!--</android.support.design.widget.TextInputLayout>-->
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
 
         <EditText android:id="@+id/et_password"
             android:layout_width="match_parent"
@@ -63,7 +56,20 @@
         android:background="@drawable/bg_edit_select"
         android:maxLines="1"
         android:singleLine="true" />
-    <!--</android.support.design.widget.TextInputLayout>-->
+    <EditText android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeActionId="@+id/login"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textEmailAddress"
+        android:hint="请输入您的邮箱地址，请认真填写"
+        android:maxLength="@dimen/maxLength"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_edit_select"
+        android:maxLines="1"
+        android:singleLine="true" />
 
     <Button android:id="@+id/btn_register"
         style="?android:textAppearanceSmall"

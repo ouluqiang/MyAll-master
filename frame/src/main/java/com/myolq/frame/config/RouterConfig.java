@@ -7,10 +7,11 @@ package com.myolq.frame.config;
 public class RouterConfig {
 
     private   static  String URL="myall://";
-    public final  static String LOGIN="login";
-    public final static String REGISTER="register";
-    public final static String LAUNCH="launch";
-    public final static String HOME="home";
+    public final  static String LOGIN="Login";
+    public final static String REGISTER="Register";
+    public final static String LAUNCH="Launch";
+    public final static String HOME="Home";
+    public final static String FORGET_PASSWORD="ForgetPassword";
 
     public static String getLogin(){
         return URL+LOGIN;
@@ -20,6 +21,9 @@ public class RouterConfig {
     }
     public static String getHome(){
         return URL+HOME;
+    }
+    public static String getForgetPassword(){
+        return URL+FORGET_PASSWORD;
     }
 
 }

@@ -23,11 +23,13 @@ public class RegisterContract {
     public interface Presenter extends BasePresenter {
 
         void getRegister(UserBean user);
+        void getRequestEmailVerify(String email);
 //        void getUser();
     }
     public interface Model {
 
         void getRegister(UserBean user, StringCallBack callBack);
+        void getRequestEmailVerify(String email,StringCallBack callBack);
 //        void getUser(GsonCallBack<UserBean> callBack);
     }
 

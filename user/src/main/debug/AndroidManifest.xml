@@ -29,6 +29,9 @@
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ForgetPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="com.github.mzule.activityrouter.router.RouterActivity"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>

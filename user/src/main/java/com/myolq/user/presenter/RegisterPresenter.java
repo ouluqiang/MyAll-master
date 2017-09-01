@@ -33,12 +33,32 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     }
 
     @Override
-    public void getRegister(UserBean user) {
+    public void getRegister(final UserBean user) {
         registerView.onLoadShow();
         registerModel.getRegister(user, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
 //                Log.i("test","onSuccess"+s);
+//                registerView.onToast("注册成功");
+                getRequestEmailVerify(user.getEmail());
+            }
+
+            @Override
+            public void onError(Response response, Exception e) {
+                registerView.onLoadCancel();
+//                Log.i("test","onError"+response.code()+"--"+response.message());
+//                registerView.onToast(response.code()+(String)response.body());
+            }
+        });
+    }
+
+    @Override
+    public void getRequestEmailVerify(String email) {
+        registerView.onLoadShow();
+        registerModel.getRequestEmailVerify(email, new StringCallBack() {
+            @Override
+            public void onSuccess(String s) {
+                Log.i("test","onSuccess"+s);
                 registerView.onToast("注册成功");
                 registerView.onFinish();
             }

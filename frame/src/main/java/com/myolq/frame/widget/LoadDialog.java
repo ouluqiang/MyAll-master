@@ -64,13 +64,16 @@ public class LoadDialog {
     };
 
     public void show(){
-        dialogUtils.show();
-        handler.post(runnable);
+        if (dialogUtils!=null){
+            dialogUtils.show();
+            handler.post(runnable);
+        }
     }
 
     public void cancel(){
         mPressedTime=0;
         dialogUtils.cancel();
+        dialogUtils=null;
         handler.removeCallbacks(runnable);
     }
 

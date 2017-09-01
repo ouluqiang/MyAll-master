@@ -1,5 +1,6 @@
 package com.myolq.user;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -7,14 +8,23 @@ import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
 import com.github.mzule.activityrouter.router.Routers;
+import com.google.gson.reflect.TypeToken;
 import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
+import com.myolq.frame.utils.GsonUtils;
+import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.LoadDialog;
 import com.myolq.frame.widget.TitleBar;
+import com.myolq.user.bean.BaseBean;
+import com.myolq.user.bean.Us;
+import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +33,7 @@ import butterknife.OnClick;
 //import com.myolq.frame.widget.Toolbar;
 
 /**
- * A login screen that offers login via email/password.
+ * 登录
  */
 @Router(RouterConfig.LOGIN)
 public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
@@ -35,8 +45,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     AutoCompleteTextView actvAccount;
     @BindView(R2.id.et_password)
     EditText etPassword;
-    @BindView(R2.id.btn_register)
-    Button btnRegister;
     private LoginContract.Presenter presenter;
 
     @Override
@@ -55,17 +63,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         LoginPresenter loginPresenter = new LoginPresenter(this);
 //        tbTitle.setTitle("登录");
         tbTitle.setOnClickLeftBack(this);
-        onClicked();
-    }
-
-    public void onClicked() {
-//        btnRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                LoadDialog.getInstance(LoginActivity.this).show();
-//                Routers.open(getApplicationContext(), RouterConfig.getRegister());
-//            }
-//        });
     }
 
 
@@ -90,10 +87,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         LoadCancel();
     }
 
-    @OnClick({R2.id.btn_login,R2.id.btn_register})
+    @OnClick({R2.id.btn_login,R2.id.tv_register,R2.id.tv_forget_password})
     public void onViewClicked(View view) {
         int id = view.getId();
-        System.out.println(id + "---" + R2.id.btn_register);
         if (id == R.id.btn_login) {
             String account = actvAccount.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
@@ -107,10 +103,26 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             }
             presenter.getLogin(account, password);
 //        UserBean userBean=new UserBean(account,password);
-        } else if (id == R.id.btn_register) {
+        } else if (id == R.id.tv_register) {
 //
             Routers.open(this, RouterConfig.getRegister());
 
+        }else if (id==R.id.tv_forget_password){
+            Routers.open(this,RouterConfig.getForgetPassword());
+        }
+    }
+
+    @Override
+    public void onLoginSuccess(String s) {
+//        onToast(s);
+        onLoadCancel();
+        BaseBean<List<UserBean>> bean= GsonUtils.getBeanFromJson(s,new TypeToken<BaseBean<List<UserBean>>>() {}.getType());
+        if (bean!=null&&bean.getResults()!=null&&bean.getResults().size()>0){
+        UserBean userBean=bean.getResults().get(0);
+            Intent intent=new Intent();
+            intent.putExtra("boy",userBean.getBoy());
+            setResult(RESULT_OK,intent);
+            finish();
         }
     }
 }

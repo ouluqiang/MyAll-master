@@ -1,5 +1,6 @@
 package com.myolq.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,13 +19,14 @@ import com.github.mzule.activityrouter.annotation.Router;
 import com.github.mzule.activityrouter.router.Routers;
 import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
+import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@Router("home")
+@Router(RouterConfig.HOME)
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +38,7 @@ public class HomeActivity extends BaseActivity
     NavigationView navView;
     @BindView(R2.id.drawer_layout)
     DrawerLayout drawerLayout;
+    private TextView tvUser;
 
     @Override
     public int getLayoutView() {
@@ -47,14 +50,6 @@ public class HomeActivity extends BaseActivity
         init();
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_home);
-//        ButterKnife.bind(this);
-//
-//
-//    }
 
     private void init() {
         tbTitle.setTitle("首页");
@@ -68,17 +63,27 @@ public class HomeActivity extends BaseActivity
     }
 
     private void getHeadView() {
-         TextView tvUser= getViewId(navView.getHeaderView(0),R.id.tv_user);
+        tvUser = getViewId(navView.getHeaderView(0), R.id.tv_user);
          ImageView ivUser= getViewId(navView.getHeaderView(0),R.id.iv_user);
          LinearLayout llUser= getViewId(navView.getHeaderView(0),R.id.ll_user);
         tvUser.setText("用户名");
         llUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Routers.open(getApplication(), RouterConfig.getLogin());
+                Routers.openForResult(HomeActivity.this, RouterConfig.getLogin(),0);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        LogUtils.log("code"+requestCode+"--"+resultCode+"--"+data);
+        if (data==null)
+            return;
+        if (requestCode==0){
+            tvUser.setText(data.getStringExtra("boy"));
+        }
     }
 
     @Override
@@ -90,6 +95,10 @@ public class HomeActivity extends BaseActivity
             super.onBackPressed();
         }
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

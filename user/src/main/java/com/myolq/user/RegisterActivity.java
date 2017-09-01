@@ -6,6 +6,7 @@ import com.github.mzule.activityrouter.annotation.Router;
 import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
+import com.myolq.frame.utils.RegexUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
 import com.myolq.user.bean.UserBean;
@@ -15,6 +16,9 @@ import com.myolq.user.presenter.RegisterPresenter;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 注册
+ */
 @Router(RouterConfig.REGISTER)
 public class RegisterActivity extends BaseActivity implements RegisterContract.RegisterView {
 
@@ -26,6 +30,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
     EditText etPassword;
     @BindView(R2.id.et_password_new)
     EditText etPasswordNew;
+    @BindView(R2.id.et_email)
+    EditText etEmail;
     private RegisterContract.Presenter presenter;
 
     @Override
@@ -75,23 +81,44 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
         String account = etAcount.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String passwordNew = etPasswordNew.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
         if (CharacterUtils.isEmpty(account)) {
             onToast("账号不能为空");
+            return;
+        }
+        if (!CharacterUtils.isLengthMin(account,6)) {
+            onToast("账号不能小于6位");
             return;
         }
         if (CharacterUtils.isEmpty(password)) {
             onToast("密码不能为空");
             return;
         }
+        if (!CharacterUtils.isLengthMin(password,6)) {
+            onToast("密码不能小于6位");
+            return;
+        }
         if (CharacterUtils.isEmpty(passwordNew)) {
             onToast("密码不能为空");
             return;
         }
-        if (!CharacterUtils.equals(password,passwordNew)){
+        if (!CharacterUtils.isLengthMin(passwordNew,6)) {
+            onToast("密码不能小于6位");
+            return;
+        }
+        if (!CharacterUtils.equals(password, passwordNew)) {
             onToast("密码不一致");
             return;
         }
-        UserBean user = new UserBean(account, password);
+        if (CharacterUtils.isEmpty(email)){
+            onToast("邮箱地址不能为空");
+            return;
+        }
+        if (!RegexUtils.checkEmail(email)){
+            onToast("邮箱地址格式不正确");
+            return;
+        }
+        UserBean user = new UserBean(account, password,email);
         presenter.getRegister(user);
     }
 }

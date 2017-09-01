@@ -18,7 +18,9 @@ public interface NetConfig {
     public String TYPE_VALUE="application/json";
 
     public String URL="https://api.bmob.cn/1/" ;
+    //用户
     public String USERS=URL+"users";
-
+    //邮箱验证注册
+    public String REQUEST_EMAIL_VERIFY=URL+"requestEmailVerify";
 
 }
