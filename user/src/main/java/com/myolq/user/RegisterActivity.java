@@ -6,6 +6,7 @@ import com.github.mzule.activityrouter.annotation.Router;
 import com.myolq.frame.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
+import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.RegexUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
@@ -20,7 +21,7 @@ import butterknife.OnClick;
  * 注册
  */
 @Router(RouterConfig.REGISTER)
-public class RegisterActivity extends BaseActivity implements RegisterContract.RegisterView {
+public class RegisterActivity extends BaseActivity implements RegisterContract.View {
 
     @BindView(R2.id.tb_title)
     TitleBar tbTitle;
@@ -119,6 +120,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.R
             return;
         }
         UserBean user = new UserBean(account, password,email);
+        LogUtils.log(user.toString());
         presenter.getRegister(user);
     }
 }

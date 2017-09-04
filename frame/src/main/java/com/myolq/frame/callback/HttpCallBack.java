@@ -12,6 +12,6 @@ public abstract class HttpCallBack<T> extends BaseCallBack{
 
     public abstract void onSuccess(T t);
 
-    public abstract void onError(Response response, Exception e);
+    public abstract void onError(Response response);
 
 }

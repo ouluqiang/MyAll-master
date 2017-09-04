@@ -15,11 +15,11 @@ import com.myolq.user.bean.UserBean;
 
 public class LoginContract {
 
-    public interface LoginView extends BaseView<Presenter> {
+    public interface View extends BaseView<Presenter> {
 //        void onToast(String s);
 //        void onLoadShow();
 //        void onLoadCancel();
-        void onLoginSuccess(String s);
+        void onSuccess(String s);
     }
     public interface Presenter extends BasePresenter{
 

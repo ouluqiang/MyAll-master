@@ -21,7 +21,7 @@ public class LoginModel implements LoginContract.Model{
             param+="username="+username;
 
         }
-        String url= NetConfig.USERS+param;
+        String url= NetConfig.LOGIN+param;
         OkgoLoader.getInstance().sendByGet(url,callBack);
     }
 }

@@ -64,7 +64,7 @@ public class LoadDialog {
     };
 
     public void show(){
-        if (dialogUtils!=null){
+        if (loadDialog!=null) {
             dialogUtils.show();
             handler.post(runnable);
         }
@@ -72,9 +72,11 @@ public class LoadDialog {
 
     public void cancel(){
         mPressedTime=0;
-        dialogUtils.cancel();
-        dialogUtils=null;
-        handler.removeCallbacks(runnable);
+        if (loadDialog!=null){
+            dialogUtils.cancel();
+            loadDialog=null;
+            handler.removeCallbacks(runnable);
+        }
     }
 
 

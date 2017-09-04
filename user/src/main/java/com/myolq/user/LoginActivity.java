@@ -18,7 +18,6 @@ import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.LoadDialog;
 import com.myolq.frame.widget.TitleBar;
 import com.myolq.user.bean.BaseBean;
-import com.myolq.user.bean.Us;
 import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
@@ -36,7 +35,7 @@ import butterknife.OnClick;
  * 登录
  */
 @Router(RouterConfig.LOGIN)
-public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
 
     @BindView(R2.id.tb_title)
@@ -113,7 +112,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     }
 
     @Override
-    public void onLoginSuccess(String s) {
+    public void onSuccess(String s) {
 //        onToast(s);
         onLoadCancel();
         BaseBean<List<UserBean>> bean= GsonUtils.getBeanFromJson(s,new TypeToken<BaseBean<List<UserBean>>>() {}.getType());

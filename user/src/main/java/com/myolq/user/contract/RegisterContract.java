@@ -14,7 +14,7 @@ import com.myolq.user.bean.UserBean;
 
 public class RegisterContract {
 
-    public interface RegisterView extends BaseView<RegisterContract.Presenter> {
+    public interface View extends BaseView<RegisterContract.Presenter> {
 //        void onToast(String s);
         void onFinish();
 //        void onLoadShow();

@@ -16,13 +16,13 @@ import com.myolq.user.model.LoginModel;
 
 public class LoginPresenter implements LoginContract.Presenter{
 
-    private LoginModel loginModel;
-    private LoginContract.LoginView loginView;
+    private LoginModel model;
+    private LoginContract.View view;
 
-    public LoginPresenter( LoginContract.LoginView loginView) {
-        loginModel = new LoginModel();
-        this.loginView=loginView;
-        this.loginView.setPresenter(this);
+    public LoginPresenter( LoginContract.View view) {
+        model = new LoginModel();
+        this.view=view;
+        this.view.setPresenter(this);
     }
 
     @Override
@@ -32,17 +32,18 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void getLogin(String username, String password) {
-        loginView.onLoadShow();
-        loginModel.getLogin(username, password, new StringCallBack() {
+        view.onLoadShow();
+        model.getLogin(username, password, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
                 Log.i("test",s);
-                loginView.onLoginSuccess(s);
+                view.onSuccess(s);
             }
 
             @Override
-            public void onError(Response response, Exception e) {
-                loginView.onLoadCancel();
+            public void onError(Response response) {
+                view.onLoadCancel();
+                view.onToast(response.body().toString());
             }
         });
     }

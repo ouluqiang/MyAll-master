@@ -18,13 +18,13 @@ import com.myolq.user.model.RegisterModel;
 public class RegisterPresenter implements RegisterContract.Presenter {
 
 
-    private  RegisterModel registerModel;
-    private  RegisterContract.RegisterView registerView;
+    private  RegisterModel model;
+    private  RegisterContract.View view;
 
-    public RegisterPresenter(RegisterContract.RegisterView registerView) {
-        registerModel = new RegisterModel();
-        this.registerView = registerView;
-        this.registerView.setPresenter(this);
+    public RegisterPresenter(RegisterContract.View view) {
+        model = new RegisterModel();
+        this.view = view;
+        this.view.setPresenter(this);
     }
 
     @Override
@@ -34,18 +34,19 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void getRegister(final UserBean user) {
-        registerView.onLoadShow();
-        registerModel.getRegister(user, new StringCallBack() {
+        view.onLoadShow();
+        model.getRegister(user, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
-//                Log.i("test","onSuccess"+s);
+                Log.i("test","onSuccess"+s);
 //                registerView.onToast("注册成功");
-                getRequestEmailVerify(user.getEmail());
+//                getRequestEmailVerify(user.getEmail());
             }
 
             @Override
-            public void onError(Response response, Exception e) {
-                registerView.onLoadCancel();
+            public void onError(Response response) {
+                view.onToast(response.body().toString());
+                view.onLoadCancel();
 //                Log.i("test","onError"+response.code()+"--"+response.message());
 //                registerView.onToast(response.code()+(String)response.body());
             }
@@ -54,18 +55,18 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void getRequestEmailVerify(String email) {
-        registerView.onLoadShow();
-        registerModel.getRequestEmailVerify(email, new StringCallBack() {
+        view.onLoadShow();
+        model.getRequestEmailVerify(email, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
                 Log.i("test","onSuccess"+s);
-                registerView.onToast("注册成功");
-                registerView.onFinish();
+                view.onToast("注册成功");
+                view.onFinish();
             }
 
             @Override
-            public void onError(Response response, Exception e) {
-                registerView.onLoadCancel();
+            public void onError(Response response) {
+                view.onLoadCancel();
 //                Log.i("test","onError"+response.code()+"--"+response.message());
 //                registerView.onToast(response.code()+(String)response.body());
             }

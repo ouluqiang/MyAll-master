@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.myolq.frame.utils.ScreenUtils;
+import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.LoadDialog;
 
 import butterknife.ButterKnife;
@@ -59,5 +60,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void LoadCancel() {
         LoadDialog.getInstance(this).cancel();
     }
+    public void toast(String s) {
+        ToastUtil.show(this,s);
+    }
+
 
 }

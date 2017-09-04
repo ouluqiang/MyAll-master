@@ -16,6 +16,7 @@ import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
+import com.lzy.okgo.request.Request;
 import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.callback.BitmapCallBack;
 import com.myolq.frame.callback.DisposeCallBack;
@@ -24,12 +25,16 @@ import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.HttpCallBack;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.utils.GsonUtils;
+import com.myolq.frame.utils.LogUtils;
 
 import java.io.File;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 
+import okhttp3.Call;
+import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 
 /**
@@ -170,15 +175,53 @@ public class OkgoLoader {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        LogUtils.log(response.body());
                         disposeCallBack.onSuccess(callBack, response);
                     }
 
                     @Override
                     public void onError(Response<String> response) {
-                        super.onError(response);
-                        Log.i("TEST", response.code() + "");
+                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
+//                        disposeCallBack.onError(callBack,response);
+                        handleError(response);
                     }
+
+                    @Override
+                    public void onCacheSuccess(Response<String> response) {
+                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
+                    }
+
                 });
+    }
+    protected <T> void handleError(Response<T> response) {
+        if (response == null) return;
+        if (response.getException() != null) response.getException().printStackTrace();
+        StringBuilder sb;
+        Call call = response.getRawCall();
+        if (call != null) {
+            LogUtils.log("请求失败  请求方式：" + call.request().method() + "\n" + "url：" + call.request().url());
+            Headers requestHeadersString = call.request().headers();
+            Set<String> requestNames = requestHeadersString.names();
+            sb = new StringBuilder();
+            for (String name : requestNames) {
+                sb.append(name).append(" ： ").append(requestHeadersString.get(name)).append("\n");
+            }
+            LogUtils.log(sb.toString());
+        } else {
+        }
+
+        okhttp3.Response rawResponse = response.getRawResponse();
+        if (rawResponse != null) {
+            Headers responseHeadersString = rawResponse.headers();
+            Set<String> names = responseHeadersString.names();
+            sb = new StringBuilder();
+            sb.append("stateCode ： ").append(rawResponse.code()).append("\n");
+            for (String name : names) {
+                sb.append(name).append(" ： ").append(responseHeadersString.get(name)).append("\n");
+            }
+            LogUtils.log(sb.toString());
+        } else {
+        }
     }
 
     /**

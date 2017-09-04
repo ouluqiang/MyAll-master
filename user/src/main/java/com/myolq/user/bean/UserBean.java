@@ -21,7 +21,7 @@ public class UserBean {
     private String boy;
     private String createdAt;
     private String email;
-    private boolean emailVerified;
+//    private boolean emailVerified;
     private String objectId;
     private String updatedAt;
     private String username;
@@ -58,13 +58,13 @@ public class UserBean {
         this.email = email;
     }
 
-    public boolean isEmailVerified() {
-        return emailVerified;
-    }
-
-    public void setEmailVerified(boolean emailVerified) {
-        this.emailVerified = emailVerified;
-    }
+//    public boolean isEmailVerified() {
+//        return emailVerified;
+//    }
+//
+//    public void setEmailVerified(boolean emailVerified) {
+//        this.emailVerified = emailVerified;
+//    }
 
     public String getObjectId() {
         return objectId;
@@ -104,7 +104,7 @@ public class UserBean {
                 "boy='" + boy + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", email='" + email + '\'' +
-                ", emailVerified=" + emailVerified +
+//                ", emailVerified=" + emailVerified +
                 ", objectId='" + objectId + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
                 ", username='" + username + '\'' +

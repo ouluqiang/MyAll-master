@@ -39,7 +39,7 @@ public class DisposeCallBack {
         }
     }
 
-    public <T> void onError(HttpCallBack<T> callback,  Response response, Exception e){
+    public <T> void onError(HttpCallBack<T> callback,  Response response){
         if(callback!=null)
         {
 //            ErrorBean baseBean= null;
@@ -48,7 +48,7 @@ public class DisposeCallBack {
 //            } catch (IOException e1) {
 //                e1.printStackTrace();
 //            }
-            callback.onError(response,e);
+            callback.onError(response);
         }
 
     }
