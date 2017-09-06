@@ -108,7 +108,7 @@ public class LogUtils {
      * @param msg
      *            (打印内容)
      */
-    public static void log(String msg) {
+    public static void i(String msg) {
         log(DEFAULT_TAG, Log.INFO, msg);
     }
 
@@ -120,7 +120,7 @@ public class LogUtils {
      * @param msg
      *            (打印内容)
      */
-    public static void log(String tag, String msg) {
+    public static void d(String tag, String msg) {
         log(tag, Log.DEBUG, msg);
     }
 
@@ -129,7 +129,7 @@ public class LogUtils {
      *
      * @param msg
      */
-    public static void log(Throwable msg) {
+    public static void e(Throwable msg) {
         log(DEFAULT_TAG, Log.ERROR, "", msg);
     }
 

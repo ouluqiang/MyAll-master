@@ -1,4 +1,4 @@
-package com.myolq.frame;
+package com.myolq.frame.base;
 
 import android.app.Application;
 import android.content.Context;

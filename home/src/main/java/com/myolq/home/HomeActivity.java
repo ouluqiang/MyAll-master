@@ -1,12 +1,10 @@
 package com.myolq.home;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,14 +15,12 @@ import android.widget.TextView;
 
 import com.github.mzule.activityrouter.annotation.Router;
 import com.github.mzule.activityrouter.router.Routers;
-import com.myolq.frame.BaseActivity;
+import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.LogUtils;
-import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 @Router(RouterConfig.HOME)
 public class HomeActivity extends BaseActivity
@@ -78,7 +74,7 @@ public class HomeActivity extends BaseActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtils.log("code"+requestCode+"--"+resultCode+"--"+data);
+        LogUtils.i("code"+requestCode+"--"+resultCode+"--"+data);
         if (data==null)
             return;
         if (requestCode==0){

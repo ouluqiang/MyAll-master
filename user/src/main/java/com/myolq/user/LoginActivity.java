@@ -3,27 +3,20 @@ package com.myolq.user;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
 import com.github.mzule.activityrouter.router.Routers;
-import com.google.gson.reflect.TypeToken;
-import com.myolq.frame.BaseActivity;
+import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
+import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.GsonUtils;
-import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.ToastUtil;
-import com.myolq.frame.widget.LoadDialog;
 import com.myolq.frame.widget.TitleBar;
-import com.myolq.user.bean.BaseBean;
 import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -115,14 +108,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void onSuccess(String s) {
 //        onToast(s);
         onLoadCancel();
-        BaseBean<List<UserBean>> bean= GsonUtils.getBeanFromJson(s,new TypeToken<BaseBean<List<UserBean>>>() {}.getType());
-        if (bean!=null&&bean.getResults()!=null&&bean.getResults().size()>0){
-        UserBean userBean=bean.getResults().get(0);
+        UserBean userBean= GsonUtils.getBeanFromJson(s,UserBean.class);
+        UserConfig.setSession(this,userBean.getSessionToken());
+
             Intent intent=new Intent();
             intent.putExtra("boy",userBean.getBoy());
             setResult(RESULT_OK,intent);
             finish();
-        }
     }
 }
 

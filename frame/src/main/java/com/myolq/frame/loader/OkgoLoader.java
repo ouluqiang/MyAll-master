@@ -89,6 +89,8 @@ public class OkgoLoader {
 //                .addCommonParams(params);
     }
 
+
+
     private void getConfiguration() {
         //1.构建OkHttpClient.Builder
 
@@ -168,6 +170,23 @@ public class OkgoLoader {
                     }
                 });
     }
+    public void sendByGet(String url,HttpHeaders headers, final GsonCallBack<?> callBack) {
+        OkGo.<String>get(url)     // 请求方式和请求url
+                .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
+                .headers(headers).execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        // s 即为所需要的结果
+                        Log.i("TEST", response.body());
+                        disposeCallBack.onSuccess(callBack,response);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        disposeCallBack.onError(callBack,response);
+                    }
+                });
+    }
 
     public void sendByGet(String url, final StringCallBack callBack) {
         OkGo.<String>get(url)     // 请求方式和请求url
@@ -175,7 +194,7 @@ public class OkgoLoader {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        LogUtils.log(response.body());
+                        LogUtils.i(response.body());
                         disposeCallBack.onSuccess(callBack, response);
                     }
 
@@ -183,7 +202,6 @@ public class OkgoLoader {
                     public void onError(Response<String> response) {
                         Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
 //                        disposeCallBack.onError(callBack,response);
-                        handleError(response);
                     }
 
                     @Override
@@ -193,36 +211,57 @@ public class OkgoLoader {
 
                 });
     }
-    protected <T> void handleError(Response<T> response) {
-        if (response == null) return;
-        if (response.getException() != null) response.getException().printStackTrace();
-        StringBuilder sb;
-        Call call = response.getRawCall();
-        if (call != null) {
-            LogUtils.log("请求失败  请求方式：" + call.request().method() + "\n" + "url：" + call.request().url());
-            Headers requestHeadersString = call.request().headers();
-            Set<String> requestNames = requestHeadersString.names();
-            sb = new StringBuilder();
-            for (String name : requestNames) {
-                sb.append(name).append(" ： ").append(requestHeadersString.get(name)).append("\n");
-            }
-            LogUtils.log(sb.toString());
-        } else {
-        }
 
-        okhttp3.Response rawResponse = response.getRawResponse();
-        if (rawResponse != null) {
-            Headers responseHeadersString = rawResponse.headers();
-            Set<String> names = responseHeadersString.names();
-            sb = new StringBuilder();
-            sb.append("stateCode ： ").append(rawResponse.code()).append("\n");
-            for (String name : names) {
-                sb.append(name).append(" ： ").append(responseHeadersString.get(name)).append("\n");
-            }
-            LogUtils.log(sb.toString());
-        } else {
-        }
+    public void sendByGet(String url,HttpHeaders headers, final StringCallBack callBack) {
+        OkGo.<String>get(url)     // 请求方式和请求url
+                .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
+                .headers(headers).execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        LogUtils.i(response.body());
+                        disposeCallBack.onSuccess(callBack, response);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
+//                        disposeCallBack.onError(callBack,response);
+                    }
+
+                    @Override
+                    public void onCacheSuccess(Response<String> response) {
+                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
+                    }
+
+                });
     }
+
+
+
+    public void sendByPut(String url,HttpHeaders headers, final StringCallBack callBack) {
+        OkGo.<String>put(url)     // 请求方式和请求url
+                .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
+                .headers(headers).execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        LogUtils.i(response.body());
+                        disposeCallBack.onSuccess(callBack, response);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
+//                        disposeCallBack.onError(callBack,response);
+                    }
+
+                    @Override
+                    public void onCacheSuccess(Response<String> response) {
+                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
+                    }
+
+                });
+    }
+
 
     /**
      * 请求 Bitmap 对象

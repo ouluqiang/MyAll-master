@@ -5,8 +5,10 @@ import android.util.Log;
 
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.widget.LoadDialog;
+import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.model.LoginModel;
 
@@ -37,7 +39,13 @@ public class LoginPresenter implements LoginContract.Presenter{
             @Override
             public void onSuccess(String s) {
                 Log.i("test",s);
-                view.onSuccess(s);
+                view.onLoadCancel();
+                UserBean userBean= GsonUtils.getBeanFromJson(s,UserBean.class);
+                if (userBean.getCode()==null){
+                    view.onSuccess(s);
+                }else{
+                    view.onToast(userBean.getError());
+                }
             }
 
             @Override

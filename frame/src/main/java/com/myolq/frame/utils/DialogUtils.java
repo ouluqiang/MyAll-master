@@ -11,26 +11,26 @@ import android.view.View;
 
 public class DialogUtils {
 
-    public static DialogUtils dialogUtils;
+//    public static DialogUtils dialogUtils;
     private AlertDialog.Builder builder;
     private  AlertDialog dialog;
     private Context context;
 
-    private DialogUtils(Context context) {
+    public DialogUtils(Context context) {
         this.context=context;
          builder= new AlertDialog.Builder(context);
     }
 
-    public static DialogUtils getInstance(Context context){
-        if (dialogUtils==null){
-            synchronized (DialogUtils.class){
-                if (dialogUtils==null){
-                    dialogUtils=new DialogUtils(context);
-                }
-            }
-        }
-        return dialogUtils;
-    }
+//    public static DialogUtils getInstance(Context context){
+//        if (dialogUtils==null){
+//            synchronized (DialogUtils.class){
+//                if (dialogUtils==null){
+//                    dialogUtils=new DialogUtils(context);
+//                }
+//            }
+//        }
+//        return dialogUtils;
+//    }
 
 
 
@@ -43,10 +43,14 @@ public class DialogUtils {
     }
 
     public void show(){
-        dialog.show();
+        if (dialog!=null)
+            dialog.show();
     }
     public void cancel(){
-        dialog.cancel();
+        if (dialog!=null) {
+            dialog.cancel();
+            dialog = null;
+        }
     }
 
     public void setCancelable(boolean flag){

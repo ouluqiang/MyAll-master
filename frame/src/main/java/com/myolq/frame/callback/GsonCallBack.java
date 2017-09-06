@@ -25,7 +25,7 @@ public abstract class GsonCallBack<T> extends HttpCallBack<T>{
 
     public abstract void onSuccess(T t);
 
-    public abstract void onError(Response response, Exception e);
+    public abstract void onError(Response response);
 
 
 }

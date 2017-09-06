@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.widget.LoadDialog;
 import com.myolq.user.User;
 import com.myolq.user.bean.UserBean;
@@ -38,9 +39,16 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         model.getRegister(user, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
-                Log.i("test","onSuccess"+s);
-//                registerView.onToast("注册成功");
-//                getRequestEmailVerify(user.getEmail());
+                Log.i("test","getRegister："+s);
+                UserBean userBean= GsonUtils.getBeanFromJson(s,UserBean.class);
+                if (userBean.getCode()==null){
+                    view.onToast("注册成功");
+                    getRequestEmailVerify(user.getEmail());
+                    view.onFinish();
+
+                }else{
+                    view.onToast(userBean.getError());
+                }
             }
 
             @Override
@@ -59,9 +67,9 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         model.getRequestEmailVerify(email, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
-                Log.i("test","onSuccess"+s);
-                view.onToast("注册成功");
-                view.onFinish();
+                Log.i("test","getRequestEmailVerify："+s);
+//                view.onToast("注册成功");
+
             }
 
             @Override

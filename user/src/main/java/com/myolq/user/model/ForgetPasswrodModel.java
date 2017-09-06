@@ -22,4 +22,9 @@ public class ForgetPasswrodModel implements ForgetPasswrodContract.Model{
         map.put("email",email);
         OkgoLoader.getInstance().sendByPostUploadingJson(url,map,callBack);
     }
+
+    @Override
+    public void getIssue( String session, StringCallBack callBack) {
+        String url=NetConfig.USERS;
+    }
 }

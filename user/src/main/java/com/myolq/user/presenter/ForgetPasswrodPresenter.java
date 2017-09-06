@@ -40,4 +40,9 @@ public class ForgetPasswrodPresenter implements ForgetPasswrodContract.Presenter
             }
         });
     }
+
+    @Override
+    public void getIssue(String session) {
+
+    }
 }

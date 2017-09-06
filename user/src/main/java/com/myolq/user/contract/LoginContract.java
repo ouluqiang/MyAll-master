@@ -1,13 +1,8 @@
 package com.myolq.user.contract;
 
-import android.content.Context;
-
-import com.myolq.frame.BasePresenter;
-import com.myolq.frame.BaseView;
-import com.myolq.frame.callback.GsonCallBack;
+import com.myolq.frame.base.BasePresenter;
+import com.myolq.frame.base.BaseView;
 import com.myolq.frame.callback.StringCallBack;
-import com.myolq.user.User;
-import com.myolq.user.bean.UserBean;
 
 /**
  * Created by root on 2017-08-24.

@@ -1,8 +1,4 @@
-package com.myolq.user.bean;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
+package com.myolq.frame.bean;
 
 /**
  * Created by root on 2017-08-24.

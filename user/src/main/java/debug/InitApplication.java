@@ -1,8 +1,7 @@
 package debug;
 
 import com.github.mzule.activityrouter.annotation.Modules;
-import com.myolq.frame.BaseActivity;
-import com.myolq.frame.BaseApplication;
+import com.myolq.frame.base.BaseApplication;
 
 /**
  * Created by root on 2017-08-25.

@@ -56,6 +56,20 @@
         android:background="@drawable/bg_edit_select"
         android:maxLines="1"
         android:singleLine="true" />
+    <EditText android:id="@+id/et_boy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeActionId="@+id/login"
+        android:imeOptions="actionUnspecified"
+        android:inputType="text"
+        android:hint="请输入您的昵称"
+        android:maxLength="@dimen/maxLength"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_edit_select"
+        android:maxLines="1"
+        android:singleLine="true" />
     <EditText android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,6 +84,31 @@
         android:background="@drawable/bg_edit_select"
         android:maxLines="1"
         android:singleLine="true" />
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/acs_issue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/safety_issue"
+        android:background="@drawable/bg_edit_select"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        ></android.support.v7.widget.AppCompatSpinner>
+    <EditText android:id="@+id/et_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeActionId="@+id/login"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textEmailAddress"
+        android:hint="请输入您的答案，请认真填写"
+        android:maxLength="@dimen/maxLength"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_edit_select"
+        android:maxLines="1"
+        android:singleLine="true" />
+
 
     <Button android:id="@+id/btn_register"
         style="?android:textAppearanceSmall"

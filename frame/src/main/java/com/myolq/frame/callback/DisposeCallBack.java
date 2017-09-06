@@ -42,13 +42,18 @@ public class DisposeCallBack {
     public <T> void onError(HttpCallBack<T> callback,  Response response){
         if(callback!=null)
         {
+            if (callback instanceof GsonCallBack){
+                GsonCallBack gsonCallBack=((GsonCallBack) callback);
+                gsonCallBack.onError(response);
+            }else if(callback instanceof StringCallBack){
+                ((StringCallBack) callback).onError(response);
+            }
 //            ErrorBean baseBean= null;
 //            try {
 //                baseBean = GsonUtils.getBeanFromJson(response.body().string(),ErrorBean.class);
 //            } catch (IOException e1) {
 //                e1.printStackTrace();
 //            }
-            callback.onError(response);
         }
 
     }

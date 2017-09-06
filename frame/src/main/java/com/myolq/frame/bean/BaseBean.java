@@ -1,4 +1,4 @@
-package com.myolq.user.bean;
+package com.myolq.frame.bean;
 
 /**
  * Created by root on 2017-09-01.

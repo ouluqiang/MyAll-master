@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">user</string>
     <string name="login">登录</string>
+    <string-array name="safety_issue">
+        <item>安全提问</item>
+        <item>您母亲的名字是？</item>
+        <item>您父亲的名字是？</item>
+        <item>您最喜欢的明星是？</item>
+        <item>您小学班主任的名字是？</item>
+        <item>您初中班主任的名字是？</item>
+        <item>您高中班主任的名字是？</item>
 
+    </string-array>
 </resources>

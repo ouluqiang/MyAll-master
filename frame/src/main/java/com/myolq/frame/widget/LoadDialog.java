@@ -29,7 +29,7 @@ public class LoadDialog {
 
     private LoadDialog(Context context) {
         this.context=context;
-        dialogUtils = DialogUtils.getInstance(context);
+        dialogUtils = new DialogUtils(context);
         dialogUtils.setView(R.layout.dialog_load);
         dialogUtils.setCancelable(false);
         if (handler==null)
@@ -54,7 +54,7 @@ public class LoadDialog {
         @Override
         public void run() {
             mPressedTime++;
-            LogUtils.log(mPressedTime+"--");
+            LogUtils.i(mPressedTime+"--");
             if (mPressedTime<=time){
                 handler.postDelayed(runnable,1000);
             }else{

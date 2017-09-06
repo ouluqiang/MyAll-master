@@ -8,6 +8,8 @@ import static android.R.attr.id;
 
 public interface NetConfig {
 
+    public String SESSION="X-LC-Session";
+
 //    public String APPID_KEY="X-Bmob-Application-Id";
 //    public String APPID_VALUE="034ddf7a49a4fdd1146c23d162994260";
     public String APPID_KEY="X-LC-Id";
@@ -22,7 +24,7 @@ public interface NetConfig {
     public String TYPE_VALUE="application/json";
 
 //    public String URL="https://api.bmob.cn/1/" ;
-    public String URL="https://api.leancloud.cn/1.1/" ;
+    public String URL="https://e1-api.leancloud.cn/1.1/" ;
     //用户
     public String USERS=URL+"users";
     //登录
@@ -31,5 +33,9 @@ public interface NetConfig {
     public String REQUEST_EMAIL_VERIFY=URL+"requestEmailVerify";
     //邮箱重置密码
     public String REQUEST_PASSWORD_RESET=URL+"requestPasswordReset";
+    //session获取用户信息
+    public String ME=URL+"users/me";
+
+
 
 }
