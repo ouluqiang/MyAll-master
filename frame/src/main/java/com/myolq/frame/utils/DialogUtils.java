@@ -1,6 +1,7 @@
 package com.myolq.frame.utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,8 +54,32 @@ public class DialogUtils {
         }
     }
 
-    public void setCancelable(boolean flag){
+    public DialogUtils getCreate(){
+        dialog=builder.create();
+        return this;
+    }
+    public DialogUtils setCancelable(boolean flag){
+        getCreate();
         dialog.setCancelable(flag);
+        return this;
+    }
+
+    public DialogUtils setTitle(CharSequence charSequence){
+        builder.setTitle(charSequence);
+        return this;
+    }
+    public DialogUtils setMessage(CharSequence charSequence){
+        builder.setMessage(charSequence);
+        return this;
+    }
+
+    public DialogUtils setNegativeButton(String s,DialogInterface.OnClickListener call){
+        builder.setNegativeButton(s,call);
+        return this;
+    }
+    public DialogUtils setPositiveButton(String s,DialogInterface.OnClickListener call){
+        builder.setPositiveButton(s,call);
+        return this;
     }
 
 

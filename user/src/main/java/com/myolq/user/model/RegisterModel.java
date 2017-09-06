@@ -2,10 +2,10 @@ package com.myolq.user.model;
 
 import android.util.ArrayMap;
 
+import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.loader.OkgoLoader;
-import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.RegisterContract;
 
 import java.util.HashMap;

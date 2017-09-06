@@ -1,5 +1,7 @@
 package com.myolq.user.model;
 
+import com.myolq.frame.bean.UserBean;
+import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.loader.OkgoLoader;
@@ -36,5 +38,11 @@ public class LoginModel implements LoginContract.Model{
             map.put("username",username);
         }
         OkgoLoader.getInstance().sendByPostUploadingJson(url,map,callBack);
+    }
+
+    @Override
+    public void getLogin(UserBean userBean, GsonCallBack<UserBean> callBack) {
+        String url= NetConfig.LOGIN;
+        OkgoLoader.getInstance().sendByPostUploadingJson(url,userBean,callBack);
     }
 }

@@ -17,6 +17,8 @@ import com.github.mzule.activityrouter.annotation.Router;
 import com.github.mzule.activityrouter.router.Routers;
 import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
+import com.myolq.frame.config.UserConfig;
+import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.widget.TitleBar;
 
@@ -46,6 +48,16 @@ public class HomeActivity extends BaseActivity
         init();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (CharacterUtils.isEmpty(UserConfig.getBoy())){
+            tvUser.setText("用户名");
+        }else{
+            tvUser.setText(UserConfig.getBoy());
+        }
+    }
+
 
     private void init() {
         tbTitle.setTitle("首页");
@@ -62,25 +74,25 @@ public class HomeActivity extends BaseActivity
         tvUser = getViewId(navView.getHeaderView(0), R.id.tv_user);
          ImageView ivUser= getViewId(navView.getHeaderView(0),R.id.iv_user);
          LinearLayout llUser= getViewId(navView.getHeaderView(0),R.id.ll_user);
-        tvUser.setText("用户名");
+
         llUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Routers.openForResult(HomeActivity.this, RouterConfig.getLogin(),0);
+                Routers.open(HomeActivity.this, RouterConfig.getLogin());
             }
         });
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtils.i("code"+requestCode+"--"+resultCode+"--"+data);
-        if (data==null)
-            return;
-        if (requestCode==0){
-            tvUser.setText(data.getStringExtra("boy"));
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        LogUtils.i("code"+requestCode+"--"+resultCode+"--"+data);
+//        if (data==null)
+//            return;
+//        if (requestCode==0){
+//            tvUser.setText(data.getStringExtra("boy"));
+//        }
+//    }
 
     @Override
     public void onBackPressed() {

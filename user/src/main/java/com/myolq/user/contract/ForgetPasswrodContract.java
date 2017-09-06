@@ -16,14 +16,14 @@ public class ForgetPasswrodContract {
     public interface Presenter extends BasePresenter {
 
         void getRequestPasswordReset(String email);
-        void getIssue(String session);
-
-//        void getUser();
+//        void getIssue(String session);
+//        void getSelectUser(String username,String safetyIssue,String safetyAnswer);
     }
     public interface Model {
 
         void getRequestPasswordReset(String email,StringCallBack callBack);
-        void getIssue(String session,StringCallBack callBack);
+//        void getIssue(String session,StringCallBack callBack);
+//        void getSelectUser(String username,String safetyIssue,String safetyAnswer,StringCallBack callBack);
 //        void getUser(GsonCallBack<UserBean> callBack);
     }
 

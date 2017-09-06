@@ -2,6 +2,7 @@ package com.myolq.user.presenter;
 
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.utils.LogUtils;
 import com.myolq.user.contract.ForgetPasswrodContract;
 import com.myolq.user.model.ForgetPasswrodModel;
 
@@ -31,6 +32,7 @@ public class ForgetPasswrodPresenter implements ForgetPasswrodContract.Presenter
         model.getRequestPasswordReset(email, new StringCallBack() {
             @Override
             public void onSuccess(String s) {
+                view.onLoadCancel();
                 view.onSuccess(s);
             }
 
@@ -41,8 +43,10 @@ public class ForgetPasswrodPresenter implements ForgetPasswrodContract.Presenter
         });
     }
 
-    @Override
-    public void getIssue(String session) {
+//    @Override
+//    public void getIssue(String session) {
+//
+//    }
 
-    }
+
 }

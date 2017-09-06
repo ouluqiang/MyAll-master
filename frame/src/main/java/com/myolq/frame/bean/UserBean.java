@@ -27,7 +27,12 @@ public class UserBean extends ErrorBean{
     private boolean mobilePhoneVerified;
     private boolean emailVerified;
 
-    public UserBean( String username, String password, String boy,String email, String safetyIssue, String safetyAnswer) {
+    public UserBean(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public UserBean(String username, String password, String boy, String email, String safetyIssue, String safetyAnswer) {
         this.username = username;
         this.password = password;
         this.boy = boy;

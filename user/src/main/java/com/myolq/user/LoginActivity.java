@@ -8,13 +8,13 @@ import android.widget.EditText;
 import com.github.mzule.activityrouter.annotation.Router;
 import com.github.mzule.activityrouter.router.Routers;
 import com.myolq.frame.base.BaseActivity;
+import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
-import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
 
@@ -93,8 +93,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 onToast("密码不能为空");
                 return;
             }
-            presenter.getLogin(account, password);
-//        UserBean userBean=new UserBean(account,password);
+//            presenter.getLogin(account, password);
+            UserBean userBean=new UserBean(account,password);
+            presenter.getLogin(userBean);
         } else if (id == R.id.tv_register) {
 //
             Routers.open(this, RouterConfig.getRegister());
@@ -105,16 +106,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @Override
-    public void onSuccess(String s) {
-//        onToast(s);
-        onLoadCancel();
-        UserBean userBean= GsonUtils.getBeanFromJson(s,UserBean.class);
-        UserConfig.setSession(this,userBean.getSessionToken());
-
-            Intent intent=new Intent();
-            intent.putExtra("boy",userBean.getBoy());
-            setResult(RESULT_OK,intent);
-            finish();
+    public void onSuccess(UserBean userBean) {
+        if (userBean.getCode()==null){
+            UserConfig.setSession(this,userBean.getSessionToken());
+            UserConfig.setUser(userBean.getObjectId(),userBean.getUsername(),userBean.getBoy(),userBean.getEmail(),userBean.isEmailVerified());
+        }else{
+            onToast(userBean.getError());
+        }
+        finish();
     }
 }
 

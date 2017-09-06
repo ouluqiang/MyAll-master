@@ -4,11 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.lzy.okgo.model.Response;
+import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.widget.LoadDialog;
 import com.myolq.user.User;
-import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.RegisterContract;
 import com.myolq.user.model.RegisterModel;
 

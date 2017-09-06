@@ -7,13 +7,13 @@ import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
 import com.myolq.frame.base.BaseActivity;
+import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.RegexUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
-import com.myolq.user.bean.UserBean;
 import com.myolq.user.contract.RegisterContract;
 import com.myolq.user.presenter.RegisterPresenter;
 

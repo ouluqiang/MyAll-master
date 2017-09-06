@@ -2,8 +2,8 @@ package com.myolq.user.contract;
 
 import com.myolq.frame.base.BasePresenter;
 import com.myolq.frame.base.BaseView;
+import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.callback.StringCallBack;
-import com.myolq.user.bean.UserBean;
 
 /**
  * Created by root on 2017-08-24.

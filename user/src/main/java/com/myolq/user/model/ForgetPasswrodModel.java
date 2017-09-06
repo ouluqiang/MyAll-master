@@ -3,6 +3,7 @@ package com.myolq.user.model;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.loader.OkgoLoader;
+import com.myolq.frame.utils.RegexUtils;
 import com.myolq.user.contract.ForgetPasswrodContract;
 
 import java.util.HashMap;
@@ -23,8 +24,20 @@ public class ForgetPasswrodModel implements ForgetPasswrodContract.Model{
         OkgoLoader.getInstance().sendByPostUploadingJson(url,map,callBack);
     }
 
-    @Override
-    public void getIssue( String session, StringCallBack callBack) {
-        String url=NetConfig.USERS;
-    }
+//    @Override
+//    public void getIssue( String session, StringCallBack callBack) {
+//        String url=NetConfig.USERS;
+//    }
+
+//    @Override
+//    public void getSelectUser(String username, String safetyIssue, String safetyAnswer, StringCallBack callBack) {
+//        String param="?safetyIssue="+safetyIssue+"&&safetyAnswer="+safetyAnswer+"&&";
+//        if (RegexUtils.checkEmail(username)){
+//            param+="email="+username;
+//        }else{
+//            param+="username="+username;
+//        }
+//        String url=NetConfig.USERS+param;
+//        OkgoLoader.getInstance().sendByGet(url,callBack);
+//    }
 }

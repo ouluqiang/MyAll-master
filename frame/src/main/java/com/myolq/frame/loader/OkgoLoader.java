@@ -346,7 +346,12 @@ public class OkgoLoader {
                     @Override
                     public void onSuccess(Response<String> response) {
                         //上传成功
-//                                 disposeCallBack.onSuccess(callBack,s,call,response);
+                        disposeCallBack.onSuccess(callBack,response);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        disposeCallBack.onError(callBack,response);
                     }
                 });
     }

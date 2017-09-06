@@ -2,7 +2,10 @@ package com.myolq.user.contract;
 
 import com.myolq.frame.base.BasePresenter;
 import com.myolq.frame.base.BaseView;
+import com.myolq.frame.bean.UserBean;
+import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.user.User;
 
 /**
  * Created by root on 2017-08-24.
@@ -11,20 +14,17 @@ import com.myolq.frame.callback.StringCallBack;
 public class LoginContract {
 
     public interface View extends BaseView<Presenter> {
-//        void onToast(String s);
-//        void onLoadShow();
-//        void onLoadCancel();
-        void onSuccess(String s);
+        void onSuccess(UserBean userBean);
     }
     public interface Presenter extends BasePresenter{
 
         void getLogin(String username, String password);
-//        void getUser();
+        void getLogin(UserBean userBean);
     }
     public interface Model {
 
         void getLogin(String username,String password, StringCallBack callBack);
-//        void getUser(GsonCallBack<UserBean> callBack);
+        void getLogin(UserBean userBean,GsonCallBack<UserBean> callBack);
     }
 
 }

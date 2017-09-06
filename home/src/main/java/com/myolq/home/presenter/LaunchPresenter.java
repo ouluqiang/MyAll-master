@@ -32,11 +32,9 @@ public class LaunchPresenter implements LaunchContract.Presenter {
 
     @Override
     public void getMe(String session) {
-        view.onLoadShow();
         model.getMe(session, new GsonCallBack<UserBean>(new TypeToken<UserBean>() {}.getType()) {
             @Override
             public void onSuccess(UserBean userBean) {
-                view.onLoadCancel();
 //                if (userBean!=null&&userBean.getCode()==null){
                     view.onSuccess(userBean);
 //                }else{
@@ -46,7 +44,6 @@ public class LaunchPresenter implements LaunchContract.Presenter {
 
             @Override
             public void onError(Response response) {
-                view.onLoadCancel();
             }
         });
 
