@@ -2,6 +2,8 @@ package com.myolq.user.contract;
 
 import com.myolq.frame.base.BasePresenter;
 import com.myolq.frame.base.BaseView;
+import com.myolq.frame.bean.ErrorBean;
+import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.StringCallBack;
 
 /**
@@ -11,7 +13,7 @@ import com.myolq.frame.callback.StringCallBack;
 public class ForgetPasswrodContract {
 
     public interface View extends BaseView<ForgetPasswrodContract.Presenter> {
-        void onSuccess(String s);
+        void onSuccess(ErrorBean errorBean);
     }
     public interface Presenter extends BasePresenter {
 
@@ -22,6 +24,7 @@ public class ForgetPasswrodContract {
     public interface Model {
 
         void getRequestPasswordReset(String email,StringCallBack callBack);
+        void getRequestPasswordReset(String email,GsonCallBack<ErrorBean> callBack);
 //        void getIssue(String session,StringCallBack callBack);
 //        void getSelectUser(String username,String safetyIssue,String safetyAnswer,StringCallBack callBack);
 //        void getUser(GsonCallBack<UserBean> callBack);

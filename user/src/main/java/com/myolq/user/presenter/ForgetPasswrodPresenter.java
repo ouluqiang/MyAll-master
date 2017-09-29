@@ -1,6 +1,9 @@
 package com.myolq.user.presenter;
 
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.model.Response;
+import com.myolq.frame.bean.ErrorBean;
+import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.utils.LogUtils;
 import com.myolq.user.contract.ForgetPasswrodContract;
@@ -29,11 +32,11 @@ public class ForgetPasswrodPresenter implements ForgetPasswrodContract.Presenter
     @Override
     public void getRequestPasswordReset(String email ) {
         view.onLoadShow();
-        model.getRequestPasswordReset(email, new StringCallBack() {
+        model.getRequestPasswordReset(email, new GsonCallBack<ErrorBean>(new TypeToken<ErrorBean>(){}.getType()) {
             @Override
-            public void onSuccess(String s) {
+            public void onSuccess(ErrorBean errorBean) {
                 view.onLoadCancel();
-                view.onSuccess(s);
+                view.onSuccess(errorBean);
             }
 
             @Override
@@ -41,6 +44,18 @@ public class ForgetPasswrodPresenter implements ForgetPasswrodContract.Presenter
                 view.onLoadCancel();
             }
         });
+//        model.getRequestPasswordReset(email, new StringCallBack() {
+//            @Override
+//            public void onSuccess(String s) {
+//                view.onLoadCancel();
+//                view.onSuccess(s);
+//            }
+//
+//            @Override
+//            public void onError(Response response) {
+//                view.onLoadCancel();
+//            }
+//        });
     }
 
 //    @Override

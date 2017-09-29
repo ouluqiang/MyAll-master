@@ -46,14 +46,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void onCreate() {
-        ButterKnife.bind(this);
         init();
     }
 
 
     private void init() {
         LoginPresenter loginPresenter = new LoginPresenter(this);
-//        tbTitle.setTitle("登录");
+        tbTitle.setTitle("登录");
         tbTitle.setOnClickLeftBack(this);
     }
 

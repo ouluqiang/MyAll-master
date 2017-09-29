@@ -9,4 +9,6 @@ import com.myolq.frame.base.BaseApplication;
 
 @Modules({"home"})
 public class InitApplication extends BaseApplication{
+
+
 }

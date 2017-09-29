@@ -1,1 +1,1 @@
-include ':app', ':frame', ':user', ':home'
+include ':app', ':frame', ':user', ':home', ':test', ':video'

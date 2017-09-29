@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
 import com.myolq.frame.base.BaseActivity;
+import com.myolq.frame.bean.ErrorBean;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.DialogUtils;
@@ -83,10 +84,10 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswr
     }
 
     @Override
-    public void onSuccess(String s) {
-        LogUtils.i(s);
-        if (s.equals("{}")){
-            new DialogUtils(this).setTitle("邮件发送成功，请修改密码").setMessage("sldkjf")
+    public void onSuccess(ErrorBean errorBean) {
+
+        if (errorBean.getCode()==null){
+            new DialogUtils(this).setMessage("邮件发送成功，请修改密码")
                     .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -94,6 +95,8 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswr
                             finish();
                         }
                     }).setCancelable(false).show();
+        }else{
+            onToast(errorBean.getError());
         }
     }
 }

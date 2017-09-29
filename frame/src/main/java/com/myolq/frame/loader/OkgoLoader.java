@@ -28,6 +28,7 @@ import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.utils.LogUtils;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -142,9 +143,14 @@ public class OkgoLoader {
      * 设置全局公共头
      */
     private void setHttpHeaders() {
-        httpHeaders.put(NetConfig.APPID_KEY, NetConfig.APPID_VALUE);
-        httpHeaders.put(NetConfig.APIKEY_KEY, NetConfig.APIKEY_VALUE);
         httpHeaders.put(NetConfig.TYPE_KEY, NetConfig.TYPE_VALUE);
+    }
+    public HttpHeaders getCloudHttpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.put(NetConfig.APPID_KEY, NetConfig.APPID_VALUE);
+        headers.put(NetConfig.APIKEY_KEY, NetConfig.APIKEY_VALUE);
+        headers.put(NetConfig.TYPE_KEY, NetConfig.TYPE_VALUE);
+        return headers;
     }
 
 
@@ -215,7 +221,8 @@ public class OkgoLoader {
     public void sendByGet(String url,HttpHeaders headers, final StringCallBack callBack) {
         OkGo.<String>get(url)     // 请求方式和请求url
                 .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
-                .headers(headers).execute(new StringCallback() {
+                .headers(headers)
+                .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         LogUtils.i(response.body());
@@ -228,10 +235,7 @@ public class OkgoLoader {
 //                        disposeCallBack.onError(callBack,response);
                     }
 
-                    @Override
-                    public void onCacheSuccess(Response<String> response) {
-                        Log.i("TEST", response.code() + ""+response.message()+"--"+response.body());
-                    }
+
 
                 });
     }
@@ -377,6 +381,41 @@ public class OkgoLoader {
                         Log.i("test", response.body());
                     }
 
+                });
+    }
+    public void sendByPostUploadingJson(String url, HttpHeaders headers, Map<String, String> object, final StringCallBack callBack) {
+//        HashMap<String, String> params = new HashMap<>();
+//        params.put("key1", "value1");
+//        params.put("key2", "这里是需要提交的json格式数据");
+//        params.put("key3", "也可以使用三方工具将对象转成json字符串");
+//        params.put("key4", "其实你怎么高兴怎么写都行");
+//        JSONObject jsonObject = new JSONObject(params);
+//        Log.i("test", GsonUtils.getBeanToJson(object).toString());
+        Log.i("test", GsonUtils.getBeanToJson(object).toString());
+        OkGo.<String>post(url)//
+                .tag(this)//
+                .headers(headers)
+                .upJson(GsonUtils.getBeanToJson(object))//
+
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        //上传成功
+                                 disposeCallBack.onSuccess(callBack,response);
+                        Log.i("test", response.body());
+                    }
+
+                    @Override
+                    public void onStart(Request<String, ? extends Request> request) {
+                        super.onStart(request);
+                        LogUtils.i(request.toString());
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        LogUtils.i(response.toString());
+                    }
                 });
     }
 

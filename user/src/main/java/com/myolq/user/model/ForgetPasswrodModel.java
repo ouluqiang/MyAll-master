@@ -1,5 +1,7 @@
 package com.myolq.user.model;
 
+import com.myolq.frame.bean.ErrorBean;
+import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.loader.OkgoLoader;
@@ -18,6 +20,14 @@ public class ForgetPasswrodModel implements ForgetPasswrodContract.Model{
 
     @Override
     public void getRequestPasswordReset(String email, StringCallBack callBack) {
+        String url= NetConfig.REQUEST_PASSWORD_RESET;
+        Map<String,String> map=new HashMap<>();
+        map.put("email",email);
+        OkgoLoader.getInstance().sendByPostUploadingJson(url,map,callBack);
+    }
+
+    @Override
+    public void getRequestPasswordReset(String email, GsonCallBack<ErrorBean> callBack) {
         String url= NetConfig.REQUEST_PASSWORD_RESET;
         Map<String,String> map=new HashMap<>();
         map.put("email",email);

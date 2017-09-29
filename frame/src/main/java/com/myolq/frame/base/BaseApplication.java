@@ -20,7 +20,7 @@ public class BaseApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext=this.getApplicationContext();
+        mContext=this;
         OkgoLoader.getInstance().init(this);
     }
 

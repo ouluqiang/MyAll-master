@@ -78,21 +78,17 @@ public class HomeActivity extends BaseActivity
         llUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Routers.open(HomeActivity.this, RouterConfig.getLogin());
+                if (CharacterUtils.isEmpty(UserConfig.getSession(getApplication()))){
+                    Routers.open(HomeActivity.this, RouterConfig.getLogin());
+                }else{
+                    Routers.open(HomeActivity.this, RouterConfig.getUserDetails());
+
+                }
             }
         });
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        LogUtils.i("code"+requestCode+"--"+resultCode+"--"+data);
-//        if (data==null)
-//            return;
-//        if (requestCode==0){
-//            tvUser.setText(data.getStringExtra("boy"));
-//        }
-//    }
 
     @Override
     public void onBackPressed() {

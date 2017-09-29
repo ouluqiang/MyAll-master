@@ -38,7 +38,7 @@ public class DialogUtils {
     public View setView(int layout){
 
         View view=LayoutInflater.from(context).inflate(layout, null);
-        builder.setView(layout);
+        builder.setView(view);
         dialog=builder.create();
         return view;
     }

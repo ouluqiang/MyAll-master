@@ -5,7 +5,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name=".LaunchActivity"
+            android:name=".Home$LaunchActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

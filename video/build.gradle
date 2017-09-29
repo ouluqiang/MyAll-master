@@ -1,0 +1,61 @@
+if (rootProject.ext.isBuild) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        if (rootProject.ext.isBuild) {
+            applicationId "com.myolq.video"
+        }
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (rootProject.ext.isBuild) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                //release模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+
+    resourcePrefix 'video_'
+}
+
+dependencies {
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+//    compile 'com.android.support:appcompat-v7:26.+'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+//    testCompile 'junit:junit:4.12'
+
+    compile rootProject.ext.dependencies.constraint_layout
+    annotationProcessor rootProject.ext.dependencies.compiler
+    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    compile project(':frame')
+}
