@@ -21,7 +21,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '25.0.0'
+
+    lintOptions {
+        //即使有lint报错也不停止打包
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -34,7 +39,7 @@ dependencies {
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 //    testCompile 'junit:junit:4.12'
     if(!rootProject.ext.isBuild){
-//        compile project(':movie')
+        compile project(':video')
         compile project(':user')
         compile project(':home')
     }else{

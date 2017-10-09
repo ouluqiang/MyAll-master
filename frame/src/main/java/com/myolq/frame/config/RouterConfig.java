@@ -13,6 +13,9 @@ public class RouterConfig {
     public final static String HOME="Home";
     public final static String FORGET_PASSWORD="ForgetPassword";
     public final static String USER_DETAILS="UserDetails";
+    public final static String PLAY="Play";
+    public final static String RECOMMEND_VIDEO="RecommendVideo";
+
 
     public static String getLogin(){
         return URL+LOGIN;
@@ -28,6 +31,12 @@ public class RouterConfig {
     }
     public static String getUserDetails(){
         return URL+USER_DETAILS;
+    }
+    public static String getPlay(String url,String title){
+        return URL+PLAY+"?url="+url+"&title="+title;
+    }
+    public static String getRecommendVideo(){
+        return URL+RECOMMEND_VIDEO;
     }
 
 

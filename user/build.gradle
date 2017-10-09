@@ -44,7 +44,6 @@ android {
 
     resourcePrefix 'user_'
 
-    buildToolsVersion '25.0.0'
 }
 
 dependencies {

@@ -13,12 +13,18 @@ android {
         if (rootProject.ext.isBuild) {
             applicationId "com.myolq.video"
         }
+//        minSdkVersion 16
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
 
     }
     buildTypes {
@@ -27,6 +33,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 
     sourceSets {
         main {
@@ -43,19 +51,21 @@ android {
     }
 
     resourcePrefix 'video_'
+
+    lintOptions {
+        //即使有lint报错也不停止打包
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
-//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
-//    compile 'com.android.support:appcompat-v7:26.+'
-//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-//    testCompile 'junit:junit:4.12'
-
-    compile rootProject.ext.dependencies.constraint_layout
     annotationProcessor rootProject.ext.dependencies.compiler
+    compile rootProject.ext.dependencies.constraint_layout
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     compile project(':frame')
+    //完整版引入
+//    compile 'com.shuyu:GSYVideoPlayer:2.0.8'
+    compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
 }

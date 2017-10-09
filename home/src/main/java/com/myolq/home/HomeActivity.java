@@ -1,6 +1,5 @@
 package com.myolq.home;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,10 +18,10 @@ import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
-import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.widget.TitleBar;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 @Router(RouterConfig.HOME)
 public class HomeActivity extends BaseActivity
@@ -51,9 +50,9 @@ public class HomeActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if (CharacterUtils.isEmpty(UserConfig.getBoy())){
+        if (CharacterUtils.isEmpty(UserConfig.getBoy())) {
             tvUser.setText("用户名");
-        }else{
+        } else {
             tvUser.setText(UserConfig.getBoy());
         }
     }
@@ -72,15 +71,15 @@ public class HomeActivity extends BaseActivity
 
     private void getHeadView() {
         tvUser = getViewId(navView.getHeaderView(0), R.id.tv_user);
-         ImageView ivUser= getViewId(navView.getHeaderView(0),R.id.iv_user);
-         LinearLayout llUser= getViewId(navView.getHeaderView(0),R.id.ll_user);
+        ImageView ivUser = getViewId(navView.getHeaderView(0), R.id.iv_user);
+        LinearLayout llUser = getViewId(navView.getHeaderView(0), R.id.ll_user);
 
         llUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (CharacterUtils.isEmpty(UserConfig.getSession(getApplication()))){
+                if (CharacterUtils.isEmpty(UserConfig.getSession(getApplication()))) {
                     Routers.open(HomeActivity.this, RouterConfig.getLogin());
-                }else{
+                } else {
                     Routers.open(HomeActivity.this, RouterConfig.getUserDetails());
 
                 }
@@ -99,9 +98,6 @@ public class HomeActivity extends BaseActivity
             super.onBackPressed();
         }
     }
-
-
-
 
 
     @Override
@@ -149,5 +145,10 @@ public class HomeActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @OnClick(R2.id.tv_video)
+    public void onViewClicked() {
+        Routers.open(this,RouterConfig.getRecommendVideo());
     }
 }
