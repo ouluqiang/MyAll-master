@@ -2,24 +2,22 @@ package com.myolq.video.presenter;
 
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.model.Response;
-import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.callback.GsonCallBack;
-import com.myolq.video.Video;
 import com.myolq.video.bean.VideoBean;
-import com.myolq.video.contract.LoginContract;
-import com.myolq.video.model.LoginModel;
+import com.myolq.video.contract.RecommendVideoContract;
+import com.myolq.video.model.RecommendVideoModel;
 
 /**
  * Created by root on 2017-08-24.
  */
 
-public class LoginPresenter implements LoginContract.Presenter{
+public class RecommendVideoPresenter implements RecommendVideoContract.Presenter{
 
-    private LoginModel model;
-    private LoginContract.View view;
+    private RecommendVideoModel model;
+    private RecommendVideoContract.View view;
 
-    public LoginPresenter( LoginContract.View view) {
-        model = new LoginModel();
+    public RecommendVideoPresenter(RecommendVideoContract.View view) {
+        model = new RecommendVideoModel();
         this.view=view;
         this.view.setPresenter(this);
     }
@@ -30,12 +28,14 @@ public class LoginPresenter implements LoginContract.Presenter{
     }
 
     @Override
-    public void getLogin() {
-        model.getLogin(new GsonCallBack<VideoBean>(new TypeToken<VideoBean>(){}.getType()) {
+    public void getRecommendVideo() {
+        model.getRecommendVideo(new GsonCallBack<VideoBean>(new TypeToken<VideoBean>(){}.getType()) {
             @Override
             public void onSuccess(VideoBean videoBean) {
-                if (videoBean.getDm_error()==0){
-                    view.onSuccess(videoBean);
+                if (videoBean.getDm_error()==0&&videoBean.getLives()!=null&&videoBean.getLives().size()>0){
+                    view.onSuccess(videoBean.getLives());
+                }else{
+                    view.onToast("暂无数据");
                 }
             }
 

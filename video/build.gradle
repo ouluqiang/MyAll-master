@@ -68,4 +68,6 @@ dependencies {
     //完整版引入
 //    compile 'com.shuyu:GSYVideoPlayer:2.0.8'
     compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
+//    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }

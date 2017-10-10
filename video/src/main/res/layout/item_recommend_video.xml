@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -13,12 +14,26 @@
         android:paddingBottom="10dp"
 
         >
-        <ImageView
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:id="@+id/iv_head"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:background="@drawable/shape_image"-->
+            <!--/>-->
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_head"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
-            android:background="@drawable/shape_image"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:scaleType="center"
+            app:riv_corner_radius="8dip"
+            app:riv_oval="false"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -43,6 +58,7 @@
             android:layout_gravity="bottom"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:paddingBottom="2dp"
             >
 
             <TextView
@@ -50,12 +66,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="城市" />
             <TextView
                 android:id="@+id/tv_nick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="昵称" />
 
 
@@ -65,8 +85,10 @@
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="22dp"
+        android:paddingLeft="14dp"
         android:paddingRight="14dp"
         android:text="名称"
+        android:maxLines="1"
+        android:ellipsize="end"
         />
 </LinearLayout>

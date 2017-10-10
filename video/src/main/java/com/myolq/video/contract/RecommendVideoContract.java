@@ -7,22 +7,24 @@ import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.video.bean.VideoBean;
 
+import java.util.List;
+
 /**
  * Created by root on 2017-08-24.
  */
 
-public class LoginContract {
+public class RecommendVideoContract {
 
     public interface View extends BaseView<Presenter> {
-        void onSuccess(VideoBean videoBean);
+        void onSuccess(List<VideoBean.LivesBean> livesBean);
     }
     public interface Presenter extends BasePresenter{
 
-        void getLogin();
+        void getRecommendVideo();
     }
     public interface Model {
 
-        void getLogin(GsonCallBack<VideoBean> callBack);
+        void getRecommendVideo(GsonCallBack<VideoBean> callBack);
     }
 
 }

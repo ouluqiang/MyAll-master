@@ -6,12 +6,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.myolq.frame.loader.GlideLoader;
 import com.myolq.video.bean.VideoBean;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
+
 
 /**
  * Created by root on 2017-09-29.
@@ -28,10 +30,12 @@ public class RecommendVideoAdapter extends CommonAdapter<VideoBean.LivesBean> {
 
     @Override
     protected void convert(ViewHolder holder, VideoBean.LivesBean livesBean, int position) {
-        ImageView ivHead=holder.getView(R.id.iv_head);
+        RoundedImageView ivHead=holder.getView(R.id.iv_head);
         TextView tvName=holder.getView(R.id.tv_name);
         TextView tvNick=holder.getView(R.id.tv_nick);
         TextView tvCity=holder.getView(R.id.tv_city);
+        TextView tvNumber=holder.getView(R.id.tv_number);
+        tvNumber.setText(livesBean.getOnline_users());
         tvName.setText(livesBean.getName());
         tvCity.setText(livesBean.getCity());
         tvNick.setText(livesBean.getCreator().getNick());
