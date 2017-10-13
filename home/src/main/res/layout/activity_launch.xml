@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tomato"
-    tools:context="com.myolq.home.Home$LaunchActivity">
+    >
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"

@@ -1,13 +1,13 @@
 ext {
-    isBuild = true;//false:作为Lib组件存在， true:作为application存在
+    isBuild = false;//false:作为Lib组件存在， true:作为application存在
 
     android = [
             compileSdkVersion: 25,
             buildToolsVersion: "26.0.0",
             minSdkVersion    : 15,
             targetSdkVersion : 25,
-            versionCode      : 1,
-            versionName      : "1.0",
+            versionCode      : 2,
+            versionName      : "1.0.1",
 
     ]
 

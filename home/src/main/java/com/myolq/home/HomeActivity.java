@@ -149,6 +149,8 @@ public class HomeActivity extends BaseActivity
 
     @OnClick(R2.id.tv_video)
     public void onViewClicked() {
-        Routers.open(this,RouterConfig.getRecommendVideo());
+//        toast("点击了");
+        toast("热更新成功");
+//        Routers.open(this,RouterConfig.getRecommendVideo());
     }
 }
