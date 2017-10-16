@@ -19,6 +19,7 @@ import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.widget.TitleBar;
+import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,6 +51,10 @@ public class HomeActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
+        Beta.autoInit = true;
+        Beta.init(getApplicationContext(), true);
+//        Beta.autoCheckUpgrade = true;
+        Beta.initDelay = 1 * 1000;  //默认一秒后显示更新弹窗
         if (CharacterUtils.isEmpty(UserConfig.getBoy())) {
             tvUser.setText("用户名");
         } else {

@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 // 依赖插件脚本
 apply from: 'tinker-support.gradle'
+
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -12,7 +14,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
-//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // 开启multidex
         multiDexEnabled true
@@ -30,10 +32,10 @@ android {
     signingConfigs {
         release {
             try {
-                storeFile file("./keystore/release.keystore")
-                storePassword "testres"
-                keyAlias "testres"
-                keyPassword "testres"
+                storeFile file("./keystore/my.jks")
+                storePassword "123456"
+                keyAlias "my"
+                keyPassword "123456"
             } catch (ex) {
                 throw new InvalidUserDataException(ex.toString())
             }
@@ -75,6 +77,7 @@ dependencies {
 //    compile 'com.android.support:design:25.3.1'
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 //    testCompile 'junit:junit:4.12'
+
     if(!rootProject.ext.isBuild){
 //        compile project(':video')
 //        compile project(':user')
