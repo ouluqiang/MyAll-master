@@ -227,7 +227,7 @@ public class FileUtils {
     }
 
     /**
-     *
+     * 判断文件是否存在
      * @param path
      * @return
      */

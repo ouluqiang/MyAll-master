@@ -1,25 +1,26 @@
 package com.example.test;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Response;
-import com.lzy.okgo.utils.HeaderParser;
 import com.myolq.frame.callback.StringCallBack;
 import com.myolq.frame.loader.OkgoLoader;
 import com.myolq.frame.utils.LogUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+
+    String uploadPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +29,68 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+//        init();
+
+        if (isSDCardEnable()){
+            String path=getSDCardPath()+"新建.txt";
+            boolean is=IsExist(path);
+            Log.e("s",path+"--------"+is);
+            uploadPath=path;
+        }
+        Handler handler=new Handler(){
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void handleMessage(Message msg) {
+                Log.e("sub","*****"+msg.toString());
             }
-        });
-        init();
+        };
+        ArrivateUpload arrivateUpload=new ArrivateUpload("123456完全",uploadPath,handler);
+        arrivateUpload.start();
     }
+
+
+    /**
+     * 判断SDCard是否可用
+     *
+     * @return
+     */
+    public static boolean isSDCardEnable()
+    {
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
+
+    }
+
+    /**
+     * 获取SD卡路径
+     *
+     * @return
+     */
+    public static String getSDCardPath()
+    {
+        return Environment.getExternalStorageDirectory().getAbsolutePath()
+                + File.separator;
+    }
+
+    public boolean IsExist(String path) {
+        File file = new File(path);
+        if (!file.exists())
+            return false;
+        else
+            return true;
+    }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

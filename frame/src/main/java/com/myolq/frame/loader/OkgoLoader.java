@@ -17,25 +17,21 @@ import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.Request;
-import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.callback.BitmapCallBack;
 import com.myolq.frame.callback.DisposeCallBack;
 import com.myolq.frame.callback.FileCallBack;
 import com.myolq.frame.callback.GsonCallBack;
 import com.myolq.frame.callback.HttpCallBack;
 import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.utils.LogUtils;
 
 import java.io.File;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-
-import okhttp3.Call;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 
 /**
@@ -418,6 +414,28 @@ public class OkgoLoader {
                     }
                 });
     }
+
+    public void sendByPostUploadingFile(String url,StringCallBack callBack){
+        OkGo.<String>post(url).tag(this)
+                //.isMultipart(true)       // 强制使用 multipart/form-data 表单上传（只是演示，不需要的话不要设置。默认就是false）
+                //.params("param1", "paramValue1")        // 这里可以上传参数
+                //.params("file1", new File("filepath1"))   // 可以添加文件上传
+                //.params("file2", new File("filepath2"))     // 支持多文件同时添加上传
+//                .addFileParams(keyName, files)    // 这里支持一个key传多个文件
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                    }
+
+                    @Override
+                    public void uploadProgress(Progress progress) {
+                        super.uploadProgress(progress);
+
+                    }
+                });
+    }
+
 
 
     /**
