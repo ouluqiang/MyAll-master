@@ -33,9 +33,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutView());
         aContext=this;
+        AppManager.getInstance().pushActivity(this);
         ButterKnife.bind(this);
         onCreate();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getInstance().popActivity(this);
     }
 
     /**

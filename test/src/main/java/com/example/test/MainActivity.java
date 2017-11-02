@@ -1,14 +1,21 @@
 package com.example.test;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Response;
@@ -21,6 +28,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     String uploadPath;
+    private SeekBar seek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +36,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        seek = (SeekBar) findViewById(R.id.seek);
+        TextView textView= (TextView) findViewById(R.id.text);
+        final ObjectAnimator objectAnimator= ObjectAnimator.ofInt(seek,"progress",0,100);
+        objectAnimator.setDuration(3000);
+        objectAnimator.setRepeatMode(ValueAnimator.RESTART);
+        objectAnimator.setRepeatCount(-1);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                objectAnimator.start();
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                objectAnimator.cancel();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 //        init();
-
+       String patha=getSDCardPath()+"进度.txt";
         if (isSDCardEnable()){
-            String path=getSDCardPath()+"新建.txt";
+            String path=getSDCardPath()+"阿三.txt";
             boolean is=IsExist(path);
             Log.e("s",path+"--------"+is);
             uploadPath=path;
@@ -51,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("sub","*****"+msg.toString());
             }
         };
-        ArrivateUpload arrivateUpload=new ArrivateUpload("123456完全",uploadPath,handler);
+        ArrivateUpload arrivateUpload=new ArrivateUpload("123456完全",uploadPath,patha,handler);
         arrivateUpload.start();
     }
 

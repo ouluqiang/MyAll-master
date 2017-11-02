@@ -31,16 +31,18 @@ public class ArrivateUpload extends Thread {
 
     private String data;//表单数据
     private FileInputStream fis;//文件输入流
+    private FileInputStream fis2;//文件输入流
     private Handler handler;
 
-    private String urlStr="http://192.168.2.93:8080/zdtd/operate/sendmail/a";
+    private String urlStr="http://192.168.2.102:8080/zdtd/operate/sendmail/a_ckt";
     private String mobile="12345678901";
     private String opinion="好啊好好";
 
-    public ArrivateUpload(String data, String path, Handler handler) {
+    public ArrivateUpload(String data, String path,String patha, Handler handler) {
         this.data = data;
         this.handler = handler;
         try {
+            this.fis2=new FileInputStream(new File(patha));
             this.fis=new FileInputStream(new File(path));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -58,6 +60,7 @@ public class ArrivateUpload extends Thread {
             connection.setRequestProperty("Content-type", "multipart/form-data;boundary=" + BOUNDARYSTR);//固定格式
             connection.setRequestProperty("Charset", "utf-8");  //设置编码
             connection.setRequestProperty("Accept-Charset", "UTF-8");
+            connection.setRequestProperty("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb2JpbGUiOiIxODI1NTAwOTIzNyIsInVzZXJJZCI6IjgxZGVkZGU4MDIwMzRhZGY4ZTk5OTNlNWZmYzQ4ZjdhIiwiaWF0IjoxNTA5NDQzNDIyNDMzfQ.VvDG2X_ErDr5Xp85i6ucRnF224rTzgqdU2gsPTngqBM");
             DataOutputStream dos=new DataOutputStream(connection.getOutputStream());
             StringBuffer sb=new StringBuffer();
             /**
@@ -65,7 +68,7 @@ public class ArrivateUpload extends Thread {
              */
 
             sb.append(LAST+BOUNDARYSTR+END);
-            sb.append("Content-Disposition: form-data; name=\"username\""+END+END);
+            sb.append("Content-Disposition: form-data; name=\"userName\""+END+END);
             sb.append(data+END);//内容
             sb.append(LAST+BOUNDARYSTR+END);
             sb.append("Content-Disposition: form-data; name=\"mobile\""+END+END);
@@ -79,7 +82,7 @@ public class ArrivateUpload extends Thread {
              */
             sb.append(LAST+BOUNDARYSTR+END);
             sb.append("Content-Disposition:form-data;Content-Type:application/octet-stream;name=\"file1\";");
-            sb.append("filename=\""+newString("新建.txt")+"\""+END+END);
+            sb.append("filename=\""+newString("进度.txt")+"\""+END+END);
             dos.write(sb.toString().getBytes("utf-8"));
             if (fis != null) {
                 byte[] b=new byte[1024];
@@ -89,8 +92,24 @@ public class ArrivateUpload extends Thread {
                 }
                 dos.write(END.getBytes());
             }
+//            dos.write((LAST+BOUNDARYSTR+LAST+END).getBytes());
+//            dos.flush();
+
+            sb.append(LAST+BOUNDARYSTR+END);
+            sb.append("Content-Disposition:form-data;Content-Type:application/octet-stream;name=\"file2\";");
+            sb.append("filename=\""+newString("阿三.txt")+"\""+END+END);
+            dos.write(sb.toString().getBytes("utf-8"));
+            if (fis2 != null) {
+                byte[] b=new byte[1024];
+                int len;
+                while ((len=fis2.read(b))!=-1){
+                    dos.write(b,0,len);
+                }
+                dos.write(END.getBytes());
+            }
             dos.write((LAST+BOUNDARYSTR+LAST+END).getBytes());
             dos.flush();
+
             sb=new StringBuffer();
             if (connection.getResponseCode()==200) {//请求成功
                 BufferedReader br=new BufferedReader(new InputStreamReader(connection.getInputStream()));
