@@ -6,15 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.multidex.MultiDex;
-import android.widget.Toast;
 
 import com.myolq.frame.loader.OkgoLoader;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
-
-import java.util.Locale;
 
 /**
  * Created by root on 2017-10-12.
@@ -38,6 +34,8 @@ public class BaseApplicationLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
+        CrashHandler.getInstance().init(mContext);
+
         // 设置是否开启热更新能力，默认为true
         Beta.enableHotfix = true;
         // 设置是否自动下载补丁，默认为true

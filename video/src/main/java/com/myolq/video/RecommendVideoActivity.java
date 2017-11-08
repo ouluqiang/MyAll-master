@@ -97,8 +97,14 @@ public class RecommendVideoActivity extends BaseActivity implements RecommendVid
 
     @Override
     public void onSuccess(List<VideoBean.LivesBean> livesBean) {
+
         list.addAll(livesBean);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void state(int type) {
+        showState(type);
     }
 
 }

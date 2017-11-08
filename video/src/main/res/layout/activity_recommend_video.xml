@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="直播"
+        android:tag="title"
         ></com.myolq.frame.widget.TitleBar>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/x_recycler"

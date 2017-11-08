@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.myolq.frame.utils.ScreenUtils;
 import com.myolq.frame.utils.ToastUtil;
+import com.myolq.frame.widget.FlexibleLayout;
 import com.myolq.frame.widget.LoadDialog;
 
 import butterknife.ButterKnife;
@@ -17,6 +18,8 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+    private FlexibleLayout mFlexibleLayout;
 
     public abstract int getLayoutView();
 
@@ -31,12 +34,48 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutView());
+        setContentView(getView());
         aContext=this;
         AppManager.getInstance().pushActivity(this);
         ButterKnife.bind(this);
         onCreate();
 
+    }
+
+    private View getView(){
+        mFlexibleLayout = new FlexibleLayout(this) {
+            @Override
+            public int getView() {
+                return getLayoutView();
+            }
+
+            @Override
+            public void onLoadData() {
+
+            }
+        };
+        mFlexibleLayout.loadData();
+        return mFlexibleLayout;
+    }
+
+    public void showState(int code) {
+        switch (code) {
+            case 0:
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Succeed);
+                break;
+            case 1:
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Error);
+                break;
+            case 2:
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Load);
+                break;
+            case 3:
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Empty);
+                break;
+            case 4:
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.NoNetWork);
+                break;
+        }
     }
 
     @Override
