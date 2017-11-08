@@ -1,11 +1,8 @@
 package com.myolq.video;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.myolq.frame.loader.GlideLoader;
 import com.myolq.video.bean.VideoBean;
@@ -23,8 +20,8 @@ public class RecommendVideoAdapter extends CommonAdapter<VideoBean.LivesBean> {
 
     private Context mContext;
 
-    public RecommendVideoAdapter(Context context, int layoutId, List<VideoBean.LivesBean> datas) {
-        super(context, layoutId, datas);
+    public RecommendVideoAdapter(Context context, List<VideoBean.LivesBean> datas) {
+        super(context, R.layout.item_recommend_video, datas);
         mContext=context;
     }
 
@@ -35,11 +32,12 @@ public class RecommendVideoAdapter extends CommonAdapter<VideoBean.LivesBean> {
         TextView tvNick=holder.getView(R.id.tv_nick);
         TextView tvCity=holder.getView(R.id.tv_city);
         TextView tvNumber=holder.getView(R.id.tv_number);
-        tvNumber.setText(livesBean.getOnline_users());
+        tvNumber.setText(livesBean.getOnline_users()+"人");
         tvName.setText(livesBean.getName());
         tvCity.setText(livesBean.getCity());
         tvNick.setText(livesBean.getCreator().getNick());
         GlideLoader.getInstance().init(mContext,livesBean.getCreator().getPortrait(),ivHead);
+
     }
 
 

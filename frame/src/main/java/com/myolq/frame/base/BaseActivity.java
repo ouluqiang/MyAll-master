@@ -17,13 +17,14 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/6/19.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity{
 
     private FlexibleLayout mFlexibleLayout;
 
     public abstract int getLayoutView();
 
     public abstract void onCreate();
+    public abstract void onLayoutLoadData();
 
     public  Context getAContext() {
         return aContext;
@@ -51,23 +52,31 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             @Override
             public void onLoadData() {
-
+                onLayoutLoadData();
             }
         };
-        mFlexibleLayout.loadData();
+        showState(0);
         return mFlexibleLayout;
     }
 
+    /**
+     * 0成功
+     * 1失败
+     * 2加载
+     * 3空数据
+     * 4无网络
+     * @param code
+     */
     public void showState(int code) {
         switch (code) {
             case 0:
-                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Succeed);
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Load);
                 break;
             case 1:
-                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Error);
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Succeed);
                 break;
             case 2:
-                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Load);
+                mFlexibleLayout.showPageWithState(FlexibleLayout.State.Error);
                 break;
             case 3:
                 mFlexibleLayout.showPageWithState(FlexibleLayout.State.Empty);

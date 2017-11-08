@@ -4,7 +4,6 @@ import android.content.res.Configuration;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.dou361.ijkplayer.listener.OnPlayerBackListener;
 import com.dou361.ijkplayer.listener.OnShowThumbnailListener;
 import com.dou361.ijkplayer.widget.IjkVideoView;
@@ -58,6 +57,11 @@ public class PlayActivity extends BaseActivity {
                     }
                 })
                 .startPlay();
+    }
+
+    @Override
+    public void onLayoutLoadData() {
+
     }
 
 

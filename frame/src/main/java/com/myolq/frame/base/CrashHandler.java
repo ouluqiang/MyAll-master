@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Looper;
 
+import com.github.mzule.activityrouter.router.Routers;
+import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.DialogUtils;
 import com.myolq.frame.utils.LogUtils;
 
@@ -65,14 +67,15 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
-//    public void restartApp(){
-////        Intent intent = new Intent(AppManager.getInstance().currentActivity(),WelcomeActivity.class);
-////        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-////                | Intent.FLAG_ACTIVITY_CLEAR_TASK
-////                | Intent.FLAG_ACTIVITY_NEW_TASK);
-////        mContext.startActivity(intent);
-////        android.os.Process.killProcess(android.os.Process.myPid());  //结束进程之前可以把你程序的注销或者退出代码放在这段代码之前
-//    }
+    public void restartApp(){
+//        Intent intent = new Intent(AppManager.getInstance().currentActivity(),WelcomeActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                | Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        mContext.startActivity(intent);
+        Routers.open(AppManager.getInstance().currentActivity(), RouterConfig.getRecommendVideo());
+        android.os.Process.killProcess(android.os.Process.myPid());  //结束进程之前可以把你程序的注销或者退出代码放在这段代码之前
+    }
 
     /**
      * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.
@@ -90,12 +93,12 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 Looper.prepare();
                 if (!isShow) {
                     LogUtils.e(ex);
-                    new DialogUtils(AppManager.getInstance().currentActivity()).getCreate().setTitle( "很抱歉,程序出现异常,即将退出").setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    new DialogUtils(AppManager.getInstance().currentActivity()).setMessage("很抱歉,程序出现异常,即将退出").setNegativeButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            restartApp();
                         }
-                    }).show();
+                    }).setCancelable(false).show();
                 }
                 Looper.loop();
             }

@@ -44,6 +44,7 @@ public class OkgoLoader {
     private final HttpHeaders httpHeaders;
     private final OkHttpClient.Builder builder;
     private final HttpLoggingInterceptor loggingInterceptor;
+    private static final long TIME = 15000;      //默认的超时时间
 
     private OkgoLoader() {
         disposeCallBack = new DisposeCallBack();
@@ -108,7 +109,7 @@ public class OkgoLoader {
         //全局的写入超时时间
         builder.writeTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
         //全局的连接超时时间
-        builder.connectTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        builder.connectTimeout(TIME, TimeUnit.MILLISECONDS);
 
         //4. 配置Cookie，以下几种任选其一就行
         //使用sp保持cookie，如果cookie不过期，则一直有效
