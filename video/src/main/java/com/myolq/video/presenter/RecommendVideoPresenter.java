@@ -31,6 +31,7 @@ public class RecommendVideoPresenter implements RecommendVideoContract.Presenter
         model.getRecommendVideo(new GsonCallBack<VideoBean>(new TypeToken<VideoBean>(){}.getType()) {
             @Override
             public void onSuccess(VideoBean videoBean) {
+                view.cancel();
                 if (videoBean.getDm_error()==0&&videoBean.getLives()!=null&&videoBean.getLives().size()>0){
                     view.onSuccess(videoBean.getLives());
                     view.state(1);

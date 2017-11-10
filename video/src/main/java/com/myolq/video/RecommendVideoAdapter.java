@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.myolq.frame.loader.GlideLoader;
 import com.myolq.video.bean.VideoBean;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -33,10 +32,10 @@ public class RecommendVideoAdapter extends CommonAdapter<VideoBean.LivesBean> {
         TextView tvCity=holder.getView(R.id.tv_city);
         TextView tvNumber=holder.getView(R.id.tv_number);
         tvNumber.setText(livesBean.getOnline_users()+"人");
-        tvName.setText(livesBean.getName());
-        tvCity.setText(livesBean.getCity());
-        tvNick.setText(livesBean.getCreator().getNick());
-        GlideLoader.getInstance().init(mContext,livesBean.getCreator().getPortrait(),ivHead);
+//        tvName.setText(livesBean.getName());
+//        tvCity.setText(livesBean.getCity());
+//        tvNick.setText(livesBean.getCreator().getNick());
+//        GlideLoader.getInstance().init(mContext,livesBean.getCreator().getPortrait(),ivHead);
 
     }
 

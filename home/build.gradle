@@ -63,6 +63,7 @@ dependencies {
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 //    testCompile 'junit:junit:4.12'
     compile rootProject.ext.dependencies.constraint_layout
+//    compile 'com.android.support:support-v4:25.4.0'
     annotationProcessor rootProject.ext.dependencies.compiler
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler
     compile project(':frame')

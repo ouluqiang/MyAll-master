@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.myolq.frame.utils.ScreenUtils;
 import com.myolq.frame.utils.ToastUtil;
@@ -20,8 +21,9 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity{
 
     private FlexibleLayout mFlexibleLayout;
+    private AppManager mAppManager;
 
-    public abstract int getLayoutView();
+    public abstract int getLayoutId();
 
     public abstract void onCreate();
     public abstract void onLayoutLoadData();
@@ -34,10 +36,12 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(getView());
         aContext=this;
-        AppManager.getInstance().pushActivity(this);
+        setContentView(getView());
+        mAppManager= AppManager.getInstance();
+        mAppManager.pushActivity(this);
         ButterKnife.bind(this);
         onCreate();
 
@@ -46,8 +50,8 @@ public abstract class BaseActivity extends AppCompatActivity{
     private View getView(){
         mFlexibleLayout = new FlexibleLayout(this) {
             @Override
-            public int getView() {
-                return getLayoutView();
+            public ViewGroup getViewGroup() {
+                return getLayoutInflaterViewGroup();
             }
 
             @Override
@@ -55,8 +59,13 @@ public abstract class BaseActivity extends AppCompatActivity{
                 onLayoutLoadData();
             }
         };
-        showState(0);
+        showState(1);
         return mFlexibleLayout;
+    }
+
+    private ViewGroup getLayoutInflaterViewGroup(){
+        ViewGroup view= (ViewGroup) View.inflate(aContext,getLayoutId(),null);
+        return view;
     }
 
     /**
@@ -90,7 +99,7 @@ public abstract class BaseActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppManager.getInstance().popActivity(this);
+        mAppManager.popActivity(this);
     }
 
     /**
@@ -108,13 +117,13 @@ public abstract class BaseActivity extends AppCompatActivity{
         return (T) view.findViewById(resId);
     }
 
-    public <T extends View> T getViewId(int layout, int resId) {
-        return (T) inflate(layout).findViewById(resId);
-    }
-
-    public View inflate(int layout) {
-        return getLayoutInflater().inflate(layout, null);
-    }
+//    public <T extends View> T getViewId(int layout, int resId) {
+//        return (T) inflate(layout).findViewById(resId);
+//    }
+//
+//    public View inflate(int layout) {
+//        return getLayoutInflater().inflate(layout, null);
+//    }
 
     public void LoadShow() {
         LoadDialog.getInstance(this).show();
@@ -127,5 +136,19 @@ public abstract class BaseActivity extends AppCompatActivity{
         ToastUtil.show(this,s);
     }
 
+
+    private long time = 0;
+
+    public void exit() {
+        //如果在两秒大于2秒
+        if (System.currentTimeMillis() - time > 2000) {
+            //获得当前的时间
+            time = System.currentTimeMillis();
+            toast("再按一次退出程序");
+        } else {
+            mAppManager.popAllActivity();
+            System.exit(0);
+        }
+    }
 
 }

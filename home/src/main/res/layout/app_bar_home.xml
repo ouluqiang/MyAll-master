@@ -17,16 +17,16 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-        <TextView
-            android:id="@+id/tv_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="14dp"
-            android:layout_margin="10dp"
-            android:text="直播"
-            android:textColor="@color/white"
-            android:background="@color/tomato"
-            />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_video"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="14dp"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:text="直播"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:background="@color/tomato"-->
+            <!--/>-->
     </FrameLayout>
     <RadioGroup
         android:layout_width="match_parent"
@@ -35,6 +35,7 @@
         android:background="@color/tomato"
         >
         <android.support.v7.widget.AppCompatRadioButton
+            android:id="@+id/acrb_newspaper"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

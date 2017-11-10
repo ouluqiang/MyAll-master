@@ -1,6 +1,7 @@
 package com.myolq.home;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -37,15 +38,22 @@ public class HomeActivity extends BaseActivity
     @BindView(R2.id.drawer_layout)
     DrawerLayout drawerLayout;
     private TextView tvUser;
+    private FragmentTransaction fragmentTransaction;
+    private NewspaperFragment newspaperFragment;
 
     @Override
-    public int getLayoutView() {
+    public int getLayoutId() {
         return R.layout.activity_home;
     }
 
     @Override
     public void onCreate() {
         init();
+    }
+
+    @Override
+    public void onLayoutLoadData() {
+        showState(0);
     }
 
     @Override
@@ -72,6 +80,7 @@ public class HomeActivity extends BaseActivity
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
         getHeadView();
+        showFragment(0);
     }
 
     private void getHeadView() {
@@ -93,6 +102,46 @@ public class HomeActivity extends BaseActivity
 
     }
 
+    @OnClick({R2.id.tb_title, R2.id.acrb_newspaper})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tb_title:
+                break;
+            case R.id.acrb_newspaper:
+                showFragment(0);
+                break;
+        }
+    }
+
+    public void showFragment(int type) {
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        hideFragment(fragmentTransaction);
+        switch (type) {
+            case 0:
+                if (newspaperFragment == null) {
+                    newspaperFragment = NewspaperFragment.newInstance();
+                    fragmentTransaction.add(R.id.fl_view, newspaperFragment);
+                } else {
+                    fragmentTransaction.show(newspaperFragment);
+                }
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+        }
+        fragmentTransaction.commit();
+
+    }
+
+    private void hideFragment(FragmentTransaction transaction) {
+        if (newspaperFragment != null) {
+            transaction.hide(newspaperFragment);
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -100,7 +149,7 @@ public class HomeActivity extends BaseActivity
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            exit();
         }
     }
 
@@ -152,10 +201,12 @@ public class HomeActivity extends BaseActivity
         return true;
     }
 
-    @OnClick(R2.id.tv_video)
-    public void onViewClicked() {
-//        toast("点击了");
-        toast("热更新成功");
-//        Routers.open(this,RouterConfig.getRecommendVideo());
-    }
+//    @OnClick(R2.id.tv_video)
+//    public void onViewClicked() {
+////        toast("点击了");
+//        toast("热更新成功");
+////        Routers.open(this,RouterConfig.getRecommendVideo());
+//    }
+
+
 }

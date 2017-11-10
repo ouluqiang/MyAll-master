@@ -16,6 +16,8 @@ public class RecommendVideoContract {
     public interface View extends BaseView<Presenter> {
         void onSuccess(List<VideoBean.LivesBean> livesBean);
         void state(int type);
+        void cancel();
+
     }
     public interface Presenter extends BasePresenter{
 

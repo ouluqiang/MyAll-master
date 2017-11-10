@@ -132,6 +132,9 @@ public class LogUtils {
     public static void e(Throwable msg) {
         log(DEFAULT_TAG, Log.ERROR, "", msg);
     }
+    public static void e(String msg) {
+        log(DEFAULT_TAG, Log.ERROR, msg);
+    }
 
     /**
      * 设置是否打印

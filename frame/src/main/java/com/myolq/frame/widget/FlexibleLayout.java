@@ -45,15 +45,16 @@ public abstract class FlexibleLayout extends LinearLayout{
         init();
     }
 
-    public abstract int getView();
+    public abstract ViewGroup getViewGroup();
     public abstract void onLoadData();
 
     private void init(){
         setOrientation(VERTICAL);
         inflate(mContext, R.layout.widget_flexible,this);
-        initView = (ViewGroup) inflate(mContext,getView(),null);
+        initView = getViewGroup();
         title = initView.findViewWithTag("title");
-        addView(initView);
+        addView(initView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     public void loadData(){
@@ -72,9 +73,8 @@ public abstract class FlexibleLayout extends LinearLayout{
                 initView.removeView(title);
                 addView(title, 0);
             }
-
         }
-        switch (status){
+         switch (status){
             case Succeed:
                 initView.setVisibility(VISIBLE);
                 if (emptyView!=null){

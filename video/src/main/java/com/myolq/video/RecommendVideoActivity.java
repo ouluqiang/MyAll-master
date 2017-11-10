@@ -10,6 +10,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.LogUtils;
+import com.myolq.frame.utils.NetUtils;
 import com.myolq.video.bean.VideoBean;
 import com.myolq.video.contract.RecommendVideoContract;
 import com.myolq.video.presenter.RecommendVideoPresenter;
@@ -37,6 +38,7 @@ public class RecommendVideoActivity extends BaseActivity implements RecommendVid
 
     @Override
     public void onCreate() {
+        showState(0);
         presenter= new RecommendVideoPresenter(this);
          xRecycler.setLayoutManager(new GridLayoutManager(this,2));
         list = new ArrayList<>();
@@ -58,6 +60,10 @@ public class RecommendVideoActivity extends BaseActivity implements RecommendVid
         xRecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
+                if (!NetUtils.isConnected(getAContext())){
+                    state(4);
+                    return;
+                }
                 presenter.getRecommendVideo();
             }
 
@@ -108,6 +114,11 @@ public class RecommendVideoActivity extends BaseActivity implements RecommendVid
     @Override
     public void state(int type) {
         showState(type);
+    }
+
+    @Override
+    public void cancel() {
+        xRecycler.refreshComplete();
     }
 
 }

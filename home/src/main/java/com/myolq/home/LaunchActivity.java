@@ -10,7 +10,6 @@ import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
-import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.home.contract.LaunchContract;
 import com.myolq.home.presenter.LaunchPresenter;
@@ -26,8 +25,8 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View{
     private LaunchContract.Presenter presenter;
 
     @Override
-    public int getLayoutView() {
-        immersion();
+    public int getLayoutId() {
+//        immersion();
         return R.layout.activity_launch;
     }
 
@@ -46,8 +45,13 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View{
         handler.post(runnable);
     }
 
+    @Override
+    public void onLayoutLoadData() {
+
+    }
+
     private void init() {
-        LaunchPresenter p=new LaunchPresenter(this);
+        presenter=new LaunchPresenter(this);
 
     }
 
@@ -76,7 +80,6 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View{
 
     @Override
     public void setPresenter(LaunchContract.Presenter presenter) {
-        this.presenter = presenter;
     }
 
     @Override
