@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 
 /**
  * Created by dell on 2017/11/9.
+ *
+ * DrawerLayout错误，可固定DrawerLayout的width，或者自定义计算
  */
 
 public class CustomDrawerLayout extends DrawerLayout {

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
-// 依赖插件脚本
-apply from: 'tinker-support.gradle'
+
+//// 依赖插件脚本
+//apply from: 'tinker-support.gradle'
 
 
 android {

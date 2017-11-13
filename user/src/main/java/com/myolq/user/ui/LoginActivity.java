@@ -1,6 +1,5 @@
-package com.myolq.user;
+package com.myolq.user.ui;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -12,14 +11,14 @@ import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
-import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
+import com.myolq.user.R;
+import com.myolq.user.R2;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.presenter.LoginPresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //import com.myolq.frame.widget.Toolbar;
@@ -40,13 +39,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private LoginContract.Presenter presenter;
 
     @Override
-    public int getLayoutView() {
+    public int getLayoutId() {
         return R.layout.activity_login;
     }
 
     @Override
     public void onCreate() {
         init();
+    }
+
+    @Override
+    public void onLayoutLoadData() {
+
     }
 
 

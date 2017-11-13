@@ -1,4 +1,4 @@
-package com.myolq.video;
+package com.myolq.video.ui;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,8 @@ import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.NetUtils;
+import com.myolq.video.R;
+import com.myolq.video.R2;
 import com.myolq.video.bean.VideoBean;
 import com.myolq.video.contract.RecommendVideoContract;
 import com.myolq.video.presenter.RecommendVideoPresenter;
@@ -32,7 +34,7 @@ public class RecommendVideoActivity extends BaseActivity implements RecommendVid
     private RecommendVideoAdapter adapter;
 
     @Override
-    public int getLayoutView() {
+    public int getLayoutId() {
         return R.layout.activity_recommend_video;
     }
 

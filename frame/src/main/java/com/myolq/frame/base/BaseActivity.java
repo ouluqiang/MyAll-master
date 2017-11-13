@@ -36,7 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         aContext=this;
         setContentView(getView());

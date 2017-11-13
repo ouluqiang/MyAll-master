@@ -1,4 +1,4 @@
-package com.myolq.video;
+package com.myolq.video.ui;
 
 import android.content.res.Configuration;
 import android.view.View;
@@ -12,6 +12,8 @@ import com.dou361.ijkplayer.widget.PlayerView;
 import com.github.mzule.activityrouter.annotation.Router;
 import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
+import com.myolq.video.R;
+import com.myolq.video.R2;
 
 import butterknife.BindView;
 
@@ -24,7 +26,7 @@ public class PlayActivity extends BaseActivity {
     private PlayerView player;
 
     @Override
-    public int getLayoutView() {
+    public int getLayoutId() {
         return R.layout.activity_play;
     }
 
@@ -32,7 +34,7 @@ public class PlayActivity extends BaseActivity {
     public void onCreate() {
         url = getIntent().getStringExtra("url");
         String title=getIntent().getStringExtra("title");
-        View view = getLayoutInflater().inflate(getLayoutView(), null);
+        View view = getLayoutInflater().inflate(getLayoutId(), null);
         player = new PlayerView(this)
                 .setTitle(title)
                 .setScaleType(PlayStateParams.fitparent)

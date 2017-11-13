@@ -1,6 +1,7 @@
-package com.myolq.home;
+package com.myolq.home.ui;
 
 import com.myolq.frame.base.BaseFragment;
+import com.myolq.home.R;
 
 
 public class NewspaperFragment extends BaseFragment {

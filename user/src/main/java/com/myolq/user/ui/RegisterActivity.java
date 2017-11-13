@@ -1,4 +1,4 @@
-package com.myolq.user;
+package com.myolq.user.ui;
 
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
@@ -14,6 +14,8 @@ import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.RegexUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.frame.widget.TitleBar;
+import com.myolq.user.R;
+import com.myolq.user.R2;
 import com.myolq.user.contract.RegisterContract;
 import com.myolq.user.presenter.RegisterPresenter;
 
@@ -47,13 +49,18 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     private String[] safetyIssues;
 
     @Override
-    public int getLayoutView() {
+    public int getLayoutId() {
         return R.layout.activity_register;
     }
 
     @Override
     public void onCreate() {
         init();
+    }
+
+    @Override
+    public void onLayoutLoadData() {
+
     }
 
     private void init() {

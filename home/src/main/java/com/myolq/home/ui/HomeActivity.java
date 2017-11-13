@@ -1,4 +1,4 @@
-package com.myolq.home;
+package com.myolq.home.ui;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +20,8 @@ import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.widget.TitleBar;
+import com.myolq.home.R;
+import com.myolq.home.R2;
 import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
@@ -104,12 +106,11 @@ public class HomeActivity extends BaseActivity
 
     @OnClick({R2.id.tb_title, R2.id.acrb_newspaper})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tb_title:
-                break;
-            case R.id.acrb_newspaper:
-                showFragment(0);
-                break;
+        int id = view.getId();
+        if (id==R.id.tb_title){
+
+        }else if (id==R.id.acrb_newspaper){
+            showFragment(0);
         }
     }
 

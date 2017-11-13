@@ -7,10 +7,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
-        <activity android:name="com.myolq.video.RecommendVideoActivity"
+        <activity android:name="com.myolq.video.ui.RecommendVideoActivity"
             android:theme="@style/AppTheme.NoActionBar"
             ></activity>
-        <activity android:name=".PlayActivity"
+        <activity android:name=".ui.PlayActivity"
             android:theme="@style/AppTheme.NoActionBar"
             ></activity>
     </application>

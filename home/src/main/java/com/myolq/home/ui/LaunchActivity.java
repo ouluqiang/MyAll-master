@@ -1,4 +1,4 @@
-package com.myolq.home;
+package com.myolq.home.ui;
 
 import android.os.Handler;
 import android.widget.TextView;
@@ -11,6 +11,8 @@ import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.ToastUtil;
+import com.myolq.home.R;
+import com.myolq.home.R2;
 import com.myolq.home.contract.LaunchContract;
 import com.myolq.home.presenter.LaunchPresenter;
 
@@ -26,7 +28,7 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View{
 
     @Override
     public int getLayoutId() {
-//        immersion();
+        immersion();
         return R.layout.activity_launch;
     }
 

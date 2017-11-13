@@ -1,9 +1,6 @@
-package com.myolq.user;
+package com.myolq.user.ui;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 
 import com.github.mzule.activityrouter.annotation.Router;
@@ -12,9 +9,10 @@ import com.myolq.frame.bean.ErrorBean;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.DialogUtils;
-import com.myolq.frame.utils.LogUtils;
 import com.myolq.frame.utils.RegexUtils;
 import com.myolq.frame.widget.TitleBar;
+import com.myolq.user.R;
+import com.myolq.user.R2;
 import com.myolq.user.contract.ForgetPasswrodContract;
 import com.myolq.user.presenter.ForgetPasswrodPresenter;
 
@@ -34,13 +32,18 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswr
     private ForgetPasswrodContract.Presenter presenter;
 
     @Override
-    public int getLayoutView() {
+    public int getLayoutId() {
         return R.layout.activity_forget_password;
     }
 
     @Override
     public void onCreate() {
         init();
+    }
+
+    @Override
+    public void onLayoutLoadData() {
+
     }
 
     private void init() {

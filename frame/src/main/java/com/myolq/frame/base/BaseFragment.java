@@ -49,7 +49,6 @@ public abstract class BaseFragment extends Fragment{
 
     private ViewGroup getLayoutInflaterViewGroup(LayoutInflater inflater, ViewGroup container){
         ViewGroup view= (ViewGroup) inflater.inflate(getLayoutId(), container,false);
-
         return view;
     }
 

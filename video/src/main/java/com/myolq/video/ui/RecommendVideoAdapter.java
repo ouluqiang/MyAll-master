@@ -1,9 +1,10 @@
-package com.myolq.video;
+package com.myolq.video.ui;
 
 import android.content.Context;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.myolq.video.R;
 import com.myolq.video.bean.VideoBean;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
