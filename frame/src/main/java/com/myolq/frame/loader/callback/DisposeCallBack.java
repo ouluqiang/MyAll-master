@@ -1,4 +1,4 @@
-package com.myolq.frame.callback;
+package com.myolq.frame.loader.callback;
 
 import android.graphics.Bitmap;
 
@@ -14,11 +14,21 @@ import java.io.File;
 
 public class DisposeCallBack {
 
+    public <T> void onSuccessa(HttpCallBack<T> callback, Response response){
+        if (callback!=null){
+            if (callback instanceof GsonCallBack){
+                GsonCallBack gsonCallBack=((GsonCallBack) callback);
+                gsonCallBack.onSuccess(String.valueOf(response.body()));
+            }else if(callback instanceof StringCallBack){
+                    ((StringCallBack) callback).onSuccess(response.body()+"");
+            }
+        }
+    }
     public <T> void onSuccess(HttpCallBack<T> callback, Response response){
         if (callback!=null){
             if (callback instanceof GsonCallBack){
                 GsonCallBack gsonCallBack=((GsonCallBack) callback);
-                gsonCallBack.onSuccess(GsonUtils.getBeanFromJson(String.valueOf(response.body()),gsonCallBack.getType()));
+                gsonCallBack.onSuccessa(GsonUtils.getBeanFromJson(String.valueOf(response.body()),gsonCallBack.getType()));
             }else if(callback instanceof StringCallBack){
                     ((StringCallBack) callback).onSuccess(response.body()+"");
             }

@@ -2,7 +2,7 @@ package com.myolq.video.presenter;
 
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.model.Response;
-import com.myolq.frame.callback.GsonCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
 import com.myolq.video.bean.VideoBean;
 import com.myolq.video.contract.RecommendVideoContract;
 import com.myolq.video.model.RecommendVideoModel;

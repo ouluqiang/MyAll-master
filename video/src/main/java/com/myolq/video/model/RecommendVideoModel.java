@@ -1,6 +1,6 @@
 package com.myolq.video.model;
 
-import com.myolq.frame.callback.GsonCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
 import com.myolq.frame.loader.OkgoLoader;
 import com.myolq.video.bean.VideoBean;
 import com.myolq.video.contract.RecommendVideoContract;

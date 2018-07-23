@@ -2,10 +2,8 @@ package com.myolq.home.model;
 
 import com.lzy.okgo.model.HttpHeaders;
 import com.myolq.frame.bean.UserBean;
-import com.myolq.frame.callback.GsonCallBack;
-import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
 import com.myolq.frame.config.NetConfig;
-import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.loader.OkgoLoader;
 import com.myolq.frame.utils.LogUtils;
 import com.myolq.home.contract.LaunchContract;

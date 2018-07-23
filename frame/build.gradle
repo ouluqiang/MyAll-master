@@ -68,5 +68,7 @@ dependencies {
 
     compile 'io.reactivex.rxjava2:rxjava:2.1.1'
 
+    compile 'com.github.ikidou:TypeBuilder:1.0'
+
 }
 

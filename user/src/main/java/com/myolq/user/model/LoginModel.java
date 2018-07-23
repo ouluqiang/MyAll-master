@@ -1,9 +1,9 @@
 package com.myolq.user.model;
 
 import com.myolq.frame.bean.UserBean;
-import com.myolq.frame.callback.GsonCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
 import com.myolq.frame.config.NetConfig;
-import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.loader.callback.StringCallBack;
 import com.myolq.frame.loader.OkgoLoader;
 import com.myolq.frame.utils.RegexUtils;
 import com.myolq.user.contract.LoginContract;

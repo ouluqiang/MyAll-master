@@ -3,8 +3,7 @@ package com.myolq.home.contract;
 import com.myolq.frame.base.BasePresenter;
 import com.myolq.frame.base.BaseView;
 import com.myolq.frame.bean.UserBean;
-import com.myolq.frame.callback.GsonCallBack;
-import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
 
 /**
  * Created by root on 2017-09-04.

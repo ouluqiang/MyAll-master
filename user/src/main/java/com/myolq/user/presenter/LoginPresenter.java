@@ -1,16 +1,9 @@
 package com.myolq.user.presenter;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.bean.UserBean;
-import com.myolq.frame.callback.GsonCallBack;
-import com.myolq.frame.callback.StringCallBack;
-import com.myolq.frame.utils.GsonUtils;
-import com.myolq.frame.utils.LogUtils;
-import com.myolq.frame.widget.LoadDialog;
+import com.myolq.frame.loader.callback.GsonCallBack;
 import com.myolq.user.contract.LoginContract;
 import com.myolq.user.model.LoginModel;
 

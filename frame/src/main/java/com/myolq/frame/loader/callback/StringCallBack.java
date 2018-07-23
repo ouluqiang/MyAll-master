@@ -1,4 +1,4 @@
-package com.myolq.frame.callback;
+package com.myolq.frame.loader.callback;
 
 /**
  * Created by Administrator on 2017/1/23.

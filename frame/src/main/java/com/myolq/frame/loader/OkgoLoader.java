@@ -14,15 +14,15 @@ import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.MemoryCookieStore;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
-import com.lzy.okgo.request.Request;
-import com.myolq.frame.callback.BitmapCallBack;
-import com.myolq.frame.callback.DisposeCallBack;
-import com.myolq.frame.callback.FileCallBack;
-import com.myolq.frame.callback.GsonCallBack;
-import com.myolq.frame.callback.HttpCallBack;
-import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.loader.callback.BitmapCallBack;
+import com.myolq.frame.loader.callback.DisposeCallBack;
+import com.myolq.frame.loader.callback.FileCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
+import com.myolq.frame.loader.callback.HttpCallBack;
+import com.myolq.frame.loader.callback.StringCallBack;
 import com.myolq.frame.config.NetConfig;
 import com.myolq.frame.utils.GsonUtils;
 import com.myolq.frame.utils.LogUtils;
@@ -66,7 +66,7 @@ public class OkgoLoader {
 
     public void init(Application app) {
         getConfiguration();
-        setHttpHeaders();
+//        setHttpHeaders();
         //6. 配置OkGo
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
 //        HttpHeaders headers = new HttpHeaders();
@@ -139,9 +139,9 @@ public class OkgoLoader {
     /**
      * 设置全局公共头
      */
-    private void setHttpHeaders() {
-        httpHeaders.put(NetConfig.TYPE_KEY, NetConfig.TYPE_VALUE);
-    }
+//    private void setHttpHeaders() {
+//        httpHeaders.put(NetConfig.TYPE_KEY, NetConfig.TYPE_VALUE);
+//    }
     public HttpHeaders getCloudHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.put(NetConfig.APPID_KEY, NetConfig.APPID_VALUE);
@@ -182,6 +182,27 @@ public class OkgoLoader {
                         // s 即为所需要的结果
                         Log.i("TEST", response.body());
                         disposeCallBack.onSuccess(callBack,response);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        disposeCallBack.onError(callBack,response);
+                    }
+                });
+    }
+    public  void sendByPost(String url, HttpHeaders headers, HttpParams params, final GsonCallBack<?> callBack) {
+        OkGo.<String>post(url)     // 请求方式和请求url
+                .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
+                .headers(headers)
+                .params(params)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        // s 即为所需要的结果
+                        Log.i("TEST", response.body());
+//                        BaseBean<UserBean> baseBean=GsonUtils.fromToJson(response.body());
+//                        Log.i("苏剧", baseBean.toString());
+                        disposeCallBack.onSuccessa(callBack,response);
                     }
 
                     @Override
@@ -402,11 +423,6 @@ public class OkgoLoader {
                         Log.i("test", response.body());
                     }
 
-                    @Override
-                    public void onStart(Request<String, ? extends Request> request) {
-                        super.onStart(request);
-                        LogUtils.i(request.toString());
-                    }
 
                     @Override
                     public void onError(Response<String> response) {

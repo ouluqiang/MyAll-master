@@ -2,28 +2,29 @@ package com.example.test;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.Response;
-import com.myolq.frame.callback.StringCallBack;
+import com.myolq.frame.loader.callback.GsonCallBack;
+import com.myolq.frame.loader.callback.StringCallBack;
 import com.myolq.frame.loader.OkgoLoader;
 import com.myolq.frame.utils.LogUtils;
 
 import java.io.File;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        XRecyclerView mRecyclerView = (XRecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+//        MyAdapter
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         seek = (SeekBar) findViewById(R.id.seek);
@@ -47,35 +55,77 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                objectAnimator.start();
+//                startActivity(new Intent(getApplicationContext(),ScrollingActivity.class));
+//                objectAnimator.start();
+                OkgoLoader.getInstance().sendByPost("http://192.168.3.207:8080/ssm/user/select?username=a", null, null, new GsonCallBack<List<UserBean>>(){
+
+                    @Override
+                    public void onError(Response response) {
+
+                    }
+
+                    @Override
+                    public void onSuccessa(List<UserBean> userBeanBaseBean) {
+                        LogUtils.e(userBeanBaseBean.toString());
+                    }
+                });
+//                HttpParams params=new HttpParams();
+//                params.put("username","admin");
+//                params.put("password",123456);
+//                OkgoLoader.getInstance().sendByPost("http://192.168.3.207:8080/ssm/user/login", null, params, new GsonCallBack<Object>(){
+//
+//                    @Override
+//                    public void onError(Response response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSuccessa(Object userBeanBaseBean) {
+//                        LogUtils.e("成功"+userBeanBaseBean.toString());
+//                    }
+//                });
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                objectAnimator.cancel();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-//        init();
-       String patha=getSDCardPath()+"进度.txt";
-        if (isSDCardEnable()){
-            String path=getSDCardPath()+"阿三.txt";
-            boolean is=IsExist(path);
-            Log.e("s",path+"--------"+is);
-            uploadPath=path;
-        }
-        Handler handler=new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                Log.e("sub","*****"+msg.toString());
-            }
-        };
-        ArrivateUpload arrivateUpload=new ArrivateUpload("123456完全",uploadPath,patha,handler);
-        arrivateUpload.start();
+//       TestBean testBean= new TestBean.Buile().setName("好好").setAge(18).setSex("男").getBuile();
+//        LogUtils.e(testBean.toString());
+
+
+        TestBean testBean= new TestBean().setName("好好").setAge(18).setSex("男").getBuile();
+
+        Uri uri=Uri.parse("smsto:10086");
+        Intent shareIntent=new Intent(Intent.ACTION_SENDTO,uri);
+
+//克隆副本
+        Intent intent=(Intent) shareIntent.clone();
+        startActivity(intent);
+
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                objectAnimator.cancel();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+////        init();
+//       String patha=getSDCardPath()+"进度.txt";
+//        if (isSDCardEnable()){
+//            String path=getSDCardPath()+"阿三.txt";
+//            boolean is=IsExist(path);
+//            Log.e("s",path+"--------"+is);
+//            uploadPath=path;
+//        }
+//        Handler handler=new Handler(){
+//            @Override
+//            public void handleMessage(Message msg) {
+//                Log.e("sub","*****"+msg.toString());
+//            }
+//        };
+//        ArrivateUpload arrivateUpload=new ArrivateUpload("123456完全",uploadPath,patha,handler);
+//        arrivateUpload.start();
     }
 
 

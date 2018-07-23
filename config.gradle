@@ -19,11 +19,11 @@ ext {
             junit         : 'junit:junit:4.12',
 
             //必须使用
-            okgo          : 'com.lzy.net:okgo:3.0.1',
-            //以下三个选择添加，okrx和okrx2不能同时使用
-            //    compile 'com.lzy.net:okrx:1.0.1'
-            //    compile 'com.lzy.net:okrx2:2.0.1'
-            //    compile 'com.lzy.net:okserver:2.0.1'
+            okgo          : 'com.lzy.net:okgo:3.0.4',
+//            //以下三个选择添加，okrx和okrx2不能同时使用
+//            compile 'com.lzy.net:okrx:1.0.2'
+//            compile 'com.lzy.net:okrx2:2.0.2'
+//            compile 'com.lzy.net:okserver:2.0.5'
 
             constraint_layout    : 'com.android.support.constraint:constraint-layout:1.0.2',
             gson          : 'com.google.code.gson:gson:2.8.0',
@@ -37,6 +37,7 @@ ext {
             eventbus      : 'org.greenrobot:eventbus:3.0.0',
             butterknife   : 'com.jakewharton:butterknife:8.4.0',
             butterknife_compiler : 'com.jakewharton:butterknife-compiler:8.4.0',
+
     ]
 
 }

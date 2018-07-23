@@ -3,9 +3,7 @@ package com.myolq.user.presenter;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.bean.ErrorBean;
-import com.myolq.frame.callback.GsonCallBack;
-import com.myolq.frame.callback.StringCallBack;
-import com.myolq.frame.utils.LogUtils;
+import com.myolq.frame.loader.callback.GsonCallBack;
 import com.myolq.user.contract.ForgetPasswrodContract;
 import com.myolq.user.model.ForgetPasswrodModel;
 
