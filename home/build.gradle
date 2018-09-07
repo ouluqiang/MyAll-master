@@ -3,7 +3,7 @@ if (rootProject.ext.isBuild) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -62,10 +62,12 @@ dependencies {
 //    compile 'com.android.support:design:25.3.1'
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 //    testCompile 'junit:junit:4.12'
-    compile rootProject.ext.dependencies.constraint_layout
+    implementation rootProject.ext.dependencies.constraint_layout
 //    compile 'com.android.support:support-v4:25.4.0'
     annotationProcessor rootProject.ext.dependencies.compiler
-    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
-    compile project(':frame')
+//    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    implementation project(':frame')
+//    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

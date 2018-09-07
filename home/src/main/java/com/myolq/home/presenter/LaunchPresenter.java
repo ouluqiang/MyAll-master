@@ -1,6 +1,5 @@
 package com.myolq.home.presenter;
 
-import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.model.Response;
 import com.myolq.frame.bean.UserBean;
 import com.myolq.frame.loader.callback.GsonCallBack;
@@ -29,20 +28,34 @@ public class LaunchPresenter implements LaunchContract.Presenter {
 
     @Override
     public void getMe(String session) {
-        model.getMe(session, new GsonCallBack<UserBean>(new TypeToken<UserBean>() {}.getType()) {
+//        model.getMe(session, new GsonCallBack<UserBean>() {
+//            @Override
+//            public void onSuccess(UserBean userBean) {
+////                if (userBean!=null&&userBean.getCode()==null){
+//                    view.onSuccess(userBean);
+////                }else{
+////                    view.onToast(userBean.getError());
+////                }
+//            }
+//
+//            @Override
+//            public void onError(Response response) {
+//            }
+//        });
+        model.getMe(session, new GsonCallBack<UserBean>() {
             @Override
-            public void onSuccess(UserBean userBean) {
-//                if (userBean!=null&&userBean.getCode()==null){
+            public void onSuccessa(UserBean userBean) {
+                if (userBean!=null&&userBean.getCode()==0){
                     view.onSuccess(userBean);
-//                }else{
+                }else{
 //                    view.onToast(userBean.getError());
-//                }
+                }
             }
 
             @Override
             public void onError(Response response) {
+
             }
         });
-
     }
 }

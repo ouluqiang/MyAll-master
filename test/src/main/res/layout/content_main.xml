@@ -9,14 +9,61 @@
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
     >
-    <TextView
-        android:id="@+id/text"
-        android:padding="10dp"
-        android:background="@color/colorPrimary"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Hello World!" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:text="Hello World!"
+             />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/text"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:text="Hello World!1222" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:lines="2"
+            android:text="Hello World!saldfjkfjkfjkfjkfjkfasdjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfkl"
+             />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/text"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:text="Hello World!1222" />
+
+    </LinearLayout>
+
 
     <SeekBar
         android:id="@+id/seek"

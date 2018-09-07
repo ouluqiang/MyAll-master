@@ -6,7 +6,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.myolq.mvp"
@@ -67,6 +66,7 @@ android {
 //
 //    }
 
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -82,12 +82,12 @@ dependencies {
     if(!rootProject.ext.isBuild){
 //        compile project(':video')
 //        compile project(':user')
-        compile project(':home')
+        implementation project(':home')
     }else{
-        compile project(':frame')
+        implementation project(':frame')
     }
 //    compile rootProject.ext.dependencies.constraint_layout
-    compile rootProject.ext.dependencies.butterknife
+    implementation rootProject.ext.dependencies.butterknife
     //路由
     annotationProcessor rootProject.ext.dependencies.compiler
     annotationProcessor rootProject.ext.dependencies.butterknife_compiler

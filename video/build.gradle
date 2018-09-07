@@ -3,7 +3,7 @@ if (rootProject.ext.isBuild) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -62,12 +62,15 @@ android {
 
 dependencies {
     annotationProcessor rootProject.ext.dependencies.compiler
-    compile rootProject.ext.dependencies.constraint_layout
-    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
-    compile project(':frame')
+    implementation rootProject.ext.dependencies.constraint_layout
+//    annotationProcessor rootProject.ext.dependencies.butterknife_compiler
+    implementation project(':frame')
     //完整版引入
 //    compile 'com.shuyu:GSYVideoPlayer:2.0.8'
-    compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
+    implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
 //    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

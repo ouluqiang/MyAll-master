@@ -43,7 +43,7 @@ public abstract class BaseFragment extends Fragment{
                 onLayoutLoadData();
             }
         };
-        showState(1);
+        showState(0);
         return mFlexibleLayout;
     }
 

@@ -4,7 +4,7 @@ package com.myolq.frame.bean;
  * Created by root on 2017-08-24.
  */
 
-public class UserBean{
+public class UserBean extends BaseBean{
 
     private int uid;
     private String username;

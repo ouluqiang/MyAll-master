@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,29 +20,39 @@ import com.myolq.frame.base.BaseActivity;
 import com.myolq.frame.config.RouterConfig;
 import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
+import com.myolq.frame.widget.CustomDrawerLayout;
 import com.myolq.frame.widget.TitleBar;
 import com.myolq.home.R;
-import com.myolq.home.R2;
-import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+//import com.myolq.home.R2;
 
 @Router(RouterConfig.HOME)
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R2.id.tb_title)
+    @BindView(R.id.tb_title)
     TitleBar tbTitle;
-    @BindView(R2.id.fl_view)
+    @BindView(R.id.fl_view)
     FrameLayout flView;
-    @BindView(R2.id.nav_view)
+    @BindView(R.id.nav_view)
     NavigationView navView;
-    @BindView(R2.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     private TextView tvUser;
     private FragmentTransaction fragmentTransaction;
     private NewspaperFragment newspaperFragment;
+
+    private CustomDrawerLayout mDrawerLayout;
+    private TitleBar mTbTitle;
+    private FrameLayout mFlView;
+    private AppCompatRadioButton mAcrbNewspaper;
+    private NavigationView mNavView;
+
+
+
 
     @Override
     public int getLayoutId() {
@@ -50,6 +61,7 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onCreate() {
+//        showState(1);
         init();
     }
 
@@ -61,15 +73,16 @@ public class HomeActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        Beta.autoInit = true;
-        Beta.init(getApplicationContext(), true);
+//        Beta.autoInit = true;
+//        Beta.init(getApplicationContext(), true);
 //        Beta.autoCheckUpgrade = true;
-        Beta.initDelay = 1 * 1000;  //默认一秒后显示更新弹窗
+//        Beta.initDelay = 1 * 1000;  //默认一秒后显示更新弹窗
         if (CharacterUtils.isEmpty(UserConfig.getBoy())) {
             tvUser.setText("用户名");
         } else {
             tvUser.setText(UserConfig.getBoy());
         }
+
     }
 
 
@@ -104,7 +117,7 @@ public class HomeActivity extends BaseActivity
 
     }
 
-    @OnClick({R2.id.tb_title, R2.id.acrb_newspaper})
+    @OnClick({R.id.tb_title, R.id.acrb_newspaper})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id==R.id.tb_title){

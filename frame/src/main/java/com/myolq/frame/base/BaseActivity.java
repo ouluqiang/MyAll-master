@@ -58,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity{
                 onLayoutLoadData();
             }
         };
-        showState(1);
+        showState(0);
         return mFlexibleLayout;
     }
 

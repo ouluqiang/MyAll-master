@@ -12,7 +12,6 @@ import com.myolq.frame.config.UserConfig;
 import com.myolq.frame.utils.CharacterUtils;
 import com.myolq.frame.utils.ToastUtil;
 import com.myolq.home.R;
-import com.myolq.home.R2;
 import com.myolq.home.contract.LaunchContract;
 import com.myolq.home.presenter.LaunchPresenter;
 
@@ -21,7 +20,7 @@ import butterknife.BindView;
 @Router(RouterConfig.LAUNCH)
 public class LaunchActivity extends BaseActivity implements LaunchContract.View{
 
-    @BindView(R2.id.tv_time)
+    @BindView(R.id.tv_time)
     TextView tvTime;
     private int time=3;
     private LaunchContract.Presenter presenter;
@@ -35,6 +34,7 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View{
     @Override
     protected void onStart() {
         super.onStart();
+        showState(1);
         String session=UserConfig.getSession(this);
         if (!CharacterUtils.isEmpty(session)){
             presenter.getMe(session);
@@ -103,8 +103,8 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View{
 
     @Override
     public void onSuccess(UserBean userBean) {
-        if (userBean!=null&&userBean.getCode()==null){
-            UserConfig.setUser(userBean.getObjectId(),userBean.getUsername(),userBean.getBoy(),userBean.getEmail(),userBean.isEmailVerified());
+        if (userBean!=null&&userBean.getCode()==0){
+//            UserConfig.setUser(userBean.getObjectId(),userBean.getUsername(),userBean.getBoy(),userBean.getEmail(),userBean.isEmailVerified());
         }else{
             UserConfig.clearUser(this);
         }
